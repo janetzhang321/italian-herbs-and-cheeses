@@ -23,8 +23,4 @@
 		<input type="text" name="user" value="user">
 		<input type="text" name="pass" value="pass">
 		<input type="enter" name="Login" value="Log in">
-		<input type="enter" name="Register" value="Register">
-	</form>
-</body>
-</html>
-
+		<input 
