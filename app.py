@@ -1,11 +1,18 @@
 from flask import Flask, render_template, request, url_for, session, redirect
 import hashlib, sqlite3
+import datetime
+import json
+import thread
+import time
+import uuid
+from Queue import Queue
+from datetime import datetime
 
-
-#db = "data/database.db"
+db = "data/database.db"
 
 app = Flask(__name__)
-app.secret_key = '<j\x9ch\x80+\x0b\xd2\xb6\n\xf7\x9dj\xb8\x0fmrO\xce\xcd\x19\xd49\xe5S\x1f^\x8d\xb8"\x89Z'
+app.config['SECRET_KEY'] = 'sec-c-YWE3Zjg2NDgtMGRjMC00NzAzLTliZTQtZDEyNDI3NThmMmY2'
+app.debug = True
 
 @app.route("/")
 @app.route("/home/", methods = ["GET","POST"])
@@ -13,7 +20,7 @@ def home():
     if 'user' not in session:
         return redirect(url_for("login"))
     else:
-        return render_template("homepage.html")
+        return render_template("home.html")
 
 @app.route("/login/", methods = ["GET","POST"])
 def login():
@@ -29,9 +36,13 @@ def login():
         if (login_message == ""):
             session["user"] = request.form["user"]
             return redirect(url_for("home"))
-
     return render_template("login.html", status = login_message)
 
+@app.route("/vid/")
+def video():
+    return render_template("minivid.html")
+
+    
 #@app.route("/profile/", methods = ["POST", "GET"])
 #def profile():
 #    if "user" not in session:
