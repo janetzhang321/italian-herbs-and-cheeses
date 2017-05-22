@@ -5,22 +5,22 @@ f="database.db"
 db = sqlite3.connect(f) #open if f exists, otherwise create
 c = db.cursor()    #facilitate db ops
 
-q = "CREATE TABLE users (username TEXT, password TEXT)"
+q = "CREATE TABLE users (user TEXT, password TEXT)"
 c.execute(q)
 #q = "INSERT INTO users VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
 
-q = "CREATE TABLE profiles (username TEXT, about TEXT)"
+q = "CREATE TABLE profiles (user TEXT, about TEXT)"
 c.execute(q)
 #q = "INSERT INTO profiles VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
 
-q = "CREATE TABLE friends (username TEXT, friend TEXT)"
+q = "CREATE TABLE friends (user TEXT, friend TEXT)"
 c.execute(q)
 #q = "INSERT INTO friends VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
 
-q = "CREATE TABLE blocked (username TEXT, friend TEXT)"
+q = "CREATE TABLE blocked (user TEXT, friend TEXT)"
 c.execute(q)
 #q = "INSERT INTO blocked VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
