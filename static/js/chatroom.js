@@ -1,28 +1,32 @@
-var socket = io.connect( 'http://localhost:5000/' );
+var socket = io.connect( 'http://' + document.domain + ':' + location.port )
 
-socket.on('connect', function(){
-	socket.emit( 'connected', {
-		data : 'User Connected',
+$(document).ready(function(){
+	// broadcast a message
+	socket.on( 'connect', function() {
+		socket.emit( 'joined', {});
 	});
 
-
-});
-
-
-var form = $( 'form' ).on( 'submit', function(e) {
-	e.preventDefault()
-	var message = $( 'input.message' ).val()
-	socket.emit('connect', {
-		msg : message
+	socket.on( 'status', function(data){
+		$('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
+		$('#chat').scrollTop($('#chat')[0].scrollHeight);
 	});
-	$( 'input.message' ).val( ' ' ).focus()
+	
+	socket.on('send', function(data) {
+        $('#chat').val($('#chat').val() + data.msg + '\n');
+        $('#chat').scrollTop($('#chat')[0].scrollHeight);
+    });
 
-});
+	var form = $( 'form' ).on( 'submit', function( e ) {
+	  e.preventDefault();
+	  
+	  let user_input = $( 'input.message' ).val();
+	  
+	  socket.emit( 'message', {
+	    message : user_input
+	  } );
+	  
+	  $( 'input.message' ).val( '' ).focus();
+	});
 
-
-socket.on('my response', function(msg){
-	if (typeof msg.user !== 'undefined'){
-		$('h1').remove()
-		$('div.msg-wrapper').append('<div class="msgbbl"><b>' + $username +'</b>' + msg.msg + '</div>')
-	}
+	
 });

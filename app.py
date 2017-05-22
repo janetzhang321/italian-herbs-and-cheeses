@@ -13,10 +13,18 @@ app.config['SECRET_KEY'] = 'shhhh'
 socketio = SocketIO(app)
 
 
-@socketio.on('connected')
-def handle_connected(json):
-    print('received message: ' + str( json))
-    socketio.emit('my response',json)
+@socketio.on('joined')
+def handle_connections(msg):
+    socketio.emit('status',{'msg': session['Username'] + ' has entered the room.' });
+
+@socketio.on('message')
+def handle_messages(msg):
+    console.log(msg)
+    socketio.emit('send',{'msg': session['Username'] + ': ' + msg['msg'] });
+
+
+
+
 
 
 @app.route("/")
@@ -76,10 +84,10 @@ def logout():
 
 
 
-@app.route("/chat/<id>", methods=['GET','POST'])
-def room(id):
+@app.route("/chat/<identifier>", methods=['GET','POST'])
+def room(identifier):
     user = session['Username']
-    room = chat.roomName(id)
+    room = identifier
     return render_template("chatroom.html",user=user,room=room)
 
 
