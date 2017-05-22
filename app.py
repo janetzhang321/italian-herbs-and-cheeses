@@ -58,7 +58,9 @@ def authenticate():
             return redirect(url_for('home'))#,success="You have logged in"))
         return redirect(url_for('home'))#,error=text))
 
-
+@app.route("/vid/")
+def video():
+    return render_template("minivid.html")
 
 @app.route("/logout/")
 def logout():
