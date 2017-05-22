@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Bootstrap CSS and JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+
+
+    <script  type=text/javascript>
+        $(document).ready(function() {
+            $username = "{{user}}"
+        });
+    </script>
+
+    <script src="{{ url_for('static',filename='js/chatroom.js') }}"></script>
+
+  </head>
+
+  
+
+  <body>
+    <div class="container-fluid">
+      <div class="well text-center">
+        <h4>{{room}}</h4>
+      </div>
+      <div class="col-sm-8">
+        <div id="nomsg">
+          <h1>Nothing yet!</h1>
+          <div class="msg-wrapper"></div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <form action="" method="POST">
+          <b> Type here </b>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Message</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="message">
+            </div>
+
+            <button type="submit" class="btn btn-default">Send</button>
+          </form>
+
+
+        </form>
+      </div>
+    </div>
+
+    
+
+
+  </body>
+</html>

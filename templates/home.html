@@ -20,7 +20,22 @@
 
 <body>
 
-<h1> Active friends List</h1>
+<h1> Chatrooms </h1>
+<table border="1">
+{%for chatroom in chatrooms %}}
+  <tr>
+  <a href="/room/{{chatroom[0]}}">{{chatroom[1]}}</a>
+  </tr>
+{%endfor%}
+</table>
+
+
+
+<h1> Create a room </h1>
+<form action="/create/">
+  <input type="text" name="name" value="Name">
+  <input type="submit" name="action" value="Create">
+</form>  
 
 <form action="/logout/">
   <input type="submit" name="action" value="Logout">
