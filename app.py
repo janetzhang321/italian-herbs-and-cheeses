@@ -19,7 +19,8 @@ def handle_connections(msg):
 
 @socketio.on('message')
 def handle_messages(msg):
-    console.log(msg)
+    console.log("received msg")
+    console.log("sending msg to chat")
     socketio.emit('send',{'msg': session['Username'] + ': ' + msg['msg'] });
 
 

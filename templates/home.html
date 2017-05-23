@@ -8,7 +8,7 @@
   <title>Home</title>
 
   <!-- Bootstrap -->
-  <link href="../static/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,30 +20,38 @@
 
 <body>
 
-<h1> Chatrooms </h1>
-<table border="1">
-  {%for chatroom in chatrooms %}}
-    <tr>
-     <td><a href="/room/{{chatroom[0]}}">{{chatroom[1]}}</a></td>
-    </tr>
-  {% else %}
-    <tr>
-     <td> No rooms yet! </td>
-    </tr>
-  {%endfor%}
-</table>
+<div class="jumbotron">
+  <div class="container">
+
+    <h1> Chatrooms </h1>
+    <table border="1">
+      {%for chatroom in chatrooms %}}
+        <tr>
+         <td><a href="/room/{{chatroom[0]}}">{{chatroom[1]}}</a></td>
+        </tr>
+      {% else %}
+        <tr>
+         <td> No rooms yet! </td>
+        </tr>
+      {%endfor%}
+    </table>
+  </div>
+</div>
 
 
-<h1> Create a room </h1>
-<form action="/create/">
-  <input type="text" name="name" value="Name">
-  <input type="submit" name="action" value="Create">
-</form>  
-
+<div class="jumbotron">
+  <div class="container">
+    <h1> Create a room </h1>
+    <form action="/create/">
+      <input type="submit" name="action" value="Create">
+    </form>
+  </div>  
+</div>
 <form action="/logout/">
   <input type="submit" name="action" value="Logout">
 </form>
 </body>
 
-<a href="/templates/minivid.html">Temp video page</a>
+<a
+ href="/vid/">Temp video page</a>
 </html>

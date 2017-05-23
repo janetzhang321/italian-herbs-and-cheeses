@@ -8,6 +8,11 @@
 	vertical-align: top;
 }
 
+.center{
+	margin:0 auto;
+	width: 80%;
+}
+.top-buffer { margin-top:20px; }
 .input__field{
 	position: relative;
 	display: block;
