@@ -106,7 +106,9 @@ body {
 
 
 
-
+.nav-li { 
+  cursor: pointer;
+}
 /*
  * Cover
  */

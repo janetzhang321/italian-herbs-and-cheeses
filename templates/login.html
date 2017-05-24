@@ -11,60 +11,79 @@
   <link href="/static/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/static/css/cover.css" rel="stylesheet">
   <link href="/static/css/login.css" rel="stylesheet">
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Bootstrap CSS and JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+  <!-- Javascript -->
+  <script src="/static/js/cover.js"></script>
+
 </head>
 
 <body>
+  <div class="site-wrapper">
+    <div class="site-wrapper-inner">
+      <div class="cover-container">
+        <div class="masthead clearfix">
+          
+          <div class="inner">
+            <h3 class="masthead-brand">ooWoo</h3>
+            
+            <nav>
+              <ul class="nav masthead-nav">
+                <li class="nav-li active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li class="nav-li"><a data-toggle="tab" href="#about">About Us</a></li>          
+              </ul>
+            </nav>
+          </div>
 
-    <div class="site-wrapper">
+        </div>
 
-      <div class="col-x"
-      <div class="site-wrapper-inner">
+        <div class="tab-content">
+          <div id="home" class="tab-pane fade in active">
+            
+            <div class="inner cover" id="home-div">
 
-        <div class="cover-container">
+                <h1 class="cover-heading">Sign in</h1>
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">ooWoo</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </nav>
+                <form class="col-xs-6 col-xs-offset-3" action="/authenticate/" method="POST">
+                    
+                    <div class="form-group">
+                        <input type="text" name="user" class="form-control" placeholder="Username" required autofocus>
+                    </div>  
+                    
+                    <div class="form-group">
+                        <input type="password" name="pass" class="form-control" placeholder="Password" required>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary" type="submit" name="action" value="Login">Sign in</button>
+                    <button class="btn btn-lg btn-secondary" type="submit" name="action" value="Register"> Register</button>           
+                
+                </form>
             </div>
           </div>
 
-          <div class="inner cover">
-            
-                  
-                <h1 class="cover-heading">Sign in</h1>
-            
-                  <form class="col-xs-6 col-xs-offset-3" action="/authenticate/" method="POST">
-                  
+          <div id="about" class="tab-pane fade in">
+            <div class="inner cover" id="about-div">
 
-                    <div class="form-group">
-                      <input type="text" name="user" class="form-control" placeholder="Username" required autofocus>
-                    </div>  
-                    <div class="form-group">
-                      <input type="password" name="pass" class="form-control" placeholder="Password" required>
-                    </div>
-
-                    <button class="btn btn-lg btn-primary" type="submit" name="action" value="Login"> Sign in</button>
-                    <button class="btn btn-lg btn-secondary" type="submit" name="action" value="Register"> Register</button>           
-                    
-                  </form>
+                <h1 class="cover-heading">About us</h1>
+                <p class="lead">Italian Herbs and Cheeses was founded when certain herbs and certain cheeses joined together. We envision a project that allows users to live video chat and live chat room with registered friends. Users will be able to view friends that currently online and also block people. We will be using WebRTC and sockets in flask to host live video chats and chat rooms. We will be using a SQL database to store information for our registered users such as login info and the user’s friends. ooVoo will bite de_dust. 😂 </p>
             
-       
-    
+                
+            </div>
           </div>
-          <div class="mastfoot">
-            <div class="container-fluid">
-          
+
+        </div>
+
+
+        <div class="mastfoot">
+          <div class="container-fluid">        
             <div class="inner">
               <p>Created by Italian Herbs and Cheeses</p>
             </div>
-          </div>
           </div>
         </div>
 
@@ -72,10 +91,7 @@
 
     </div>
 
-
-
-
-
+  </div>
   
 </body>
 </html>
