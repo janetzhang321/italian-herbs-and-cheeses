@@ -42,7 +42,7 @@ def home():
         return redirect(url_for("log"))
     else:
         chatrooms = chat.getChatrooms()
-        return render_template("home.html",chatrooms=chatrooms)
+        return render_template("home.html",user=session['Username'],chatrooms=chatrooms)
 
 @app.route("/login/")
 def log():

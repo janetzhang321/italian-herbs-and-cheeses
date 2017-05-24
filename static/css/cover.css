@@ -105,6 +105,8 @@ body {
 }
 
 
+
+
 /*
  * Cover
  */
@@ -123,6 +125,10 @@ body {
  */
 
 .mastfoot {
+  position: fixed;
+  left:0;
+  right:0;
+  bottom: 0;
   color: #999; /* IE8 proofing */
   color: rgba(255,255,255,.5);
 }
@@ -138,10 +144,7 @@ body {
     position: fixed;
     top: 0;
   }
-  .mastfoot {
-    position: fixed;
-    bottom: 0;
-  }
+
   /* Start the vertical centering */
   .site-wrapper-inner {
     vertical-align: middle;
@@ -154,10 +157,3 @@ body {
   }
 }
 
-@media (min-width: 992px) {
-  .masthead,
-  .mastfoot,
-  .cover-container {
-    width: 700px;
-  }
-}

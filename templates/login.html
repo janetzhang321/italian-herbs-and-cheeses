@@ -9,19 +9,15 @@
 
   <!-- Bootstrap -->
   <link href="/static/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/cover.css" rel="stylesheet">
   <link href="/static/css/login.css" rel="stylesheet">
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body>
 
     <div class="site-wrapper">
 
+      <div class="col-x"
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
@@ -44,7 +40,7 @@
                   
                 <h1 class="cover-heading">Sign in</h1>
             
-                  <form class="col-xs-6 col-md-offset-3" action="/authenticate/" method="POST">
+                  <form class="col-xs-6 col-xs-offset-3" action="/authenticate/" method="POST">
                   
 
                     <div class="form-group">
@@ -54,22 +50,22 @@
                       <input type="password" name="pass" class="form-control" placeholder="Password" required>
                     </div>
 
-                    <div class="thebuttons">
-                      <button class="btn btn-lg btn-primary" type="submit" name="action" value="Login"> Sign in</button>
-                      <button class="btn btn-lg btn-secondary" type="submit" name="action" value="Register"> Register</button>           
-                    </div>
+                    <button class="btn btn-lg btn-primary" type="submit" name="action" value="Login"> Sign in</button>
+                    <button class="btn btn-lg btn-secondary" type="submit" name="action" value="Register"> Register</button>           
+                    
                   </form>
             
        
     
           </div>
-
           <div class="mastfoot">
+            <div class="container-fluid">
+          
             <div class="inner">
               <p>Created by Italian Herbs and Cheeses</p>
             </div>
           </div>
-
+          </div>
         </div>
 
       </div>

@@ -1,0 +1,3 @@
+harryL 5/24/2017 @ 1:33 AM
+	Modified login page styling to work for all browser sizes
+	Started work on homepage styling

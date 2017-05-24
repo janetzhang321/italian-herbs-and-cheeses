@@ -1,3 +1,3 @@
 # italian-herbs-and-cheeses
 
-pip install flask-redis
+pip install flask-socketio
