@@ -21,7 +21,7 @@ $(document).ready(function(){
 	var form = $( 'form' ).on( 'submit', function( e ) {
 	  e.preventDefault();
 	  
-	  let user_input = $( 'input.message' ).val();
+	  let user_input = $('#msgsent').val();
 	  
 	  socket.emit( 'message', {
 	    message : user_input

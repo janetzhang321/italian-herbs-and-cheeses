@@ -18,10 +18,10 @@ def handle_connections(msg):
     socketio.emit('status',{'msg': session['Username'] + ' has entered the room.' });
 
 @socketio.on('message')
-def handle_messages(msg):
-    console.log("received msg")
-    console.log("sending msg to chat")
-    socketio.emit('send',{'msg': session['Username'] + ': ' + msg['msg'] });
+def handle_messages(msgy):
+    print("received msg")
+    print("sending msg to chat")
+    socketio.emit('send',{'msg': session['Username'] + ': ' + msgy['msg'] });
 
 
 
