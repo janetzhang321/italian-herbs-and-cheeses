@@ -21,8 +21,10 @@ def handle_connections(msg):
 def handle_messages(msgy):
     print("received msg")
     print("sending msg to chat")
-    socketio.emit('send',{'msg': session['Username'] + ': ' + msgy['msg'] });
+    
+    socketio.emit('send',  {'msg': session['Username'] + ': ' + msgy['msg'] });
 
+    print("done")
 
 
 

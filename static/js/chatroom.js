@@ -4,7 +4,7 @@ $(document).ready(function(){
 	// broadcast a message
 	socket.on( 'connect', function() {
 		socket.emit( 'joined', {});
-	});
+	});	
 
 	socket.on( 'status', function(data){
 		$('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
@@ -22,9 +22,10 @@ $(document).ready(function(){
 	  e.preventDefault();
 	  
 	  let user_input = $('#msgsent').val();
+
 	  
 	  socket.emit( 'message', {
-	    message : user_input
+	    'msg' : user_input
 	  } );
 
 	  console.log("sent message to server")
