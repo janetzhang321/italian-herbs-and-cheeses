@@ -9,7 +9,15 @@
 
   <!-- Bootstrap -->
   <link href="/static/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
   <link href="/static/css/cover.css" rel="stylesheet">
+  <link href="/static/css/home.css" rel="stylesheet">
+  <!-- JS -->
+  <script src="/static/js/home.js"></script>
 </head>
 
 
@@ -19,32 +27,46 @@
 
       <div class="site-wrapper-inner">
 
-        <div class="cover-container">
+        <div class="container nopadding">
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">ooWoo</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="/profile/{{user}}">{{user}}</a></li>
-                  <li><a href="/logout/">Logout</a></li>
-                </ul>
-              </nav>
+          <div class="row">
+            <div class="masthead clearfix">
+              <div class="inner">
+                <h3 class="masthead-brand">ooWoo</h3>
+                <nav>
+                  <ul class="nav masthead-nav">
+                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                    <li><a data-toggle="tab" href="/profile/{{user}}">{{user}}</a></li>
+                    <li><a href="/logout/">Logout</a></li>
+                  </ul>
+                </nav>
+              </div>
             </div>
           </div>
 
-          <div class="inner cover">
-                <h1 class="cover-heading">Hi, {{user}}!</h1>
-          </div>
-          <div class="mastfoot">
-            <div class="container-fluid">
-          
-            <div class="inner">
-              <p>Created by Italian Herbs and Cheeses</p>
+          <div class="row">
+            <div class="cover-container">
+                <div class="col-sm-3" id="left">
+                      <h1 class="cover-heading">Hi, {{user}}!<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br><br>hi<br><br>hihi<br>hi<br></h1>
+                </div>
+
+                <div class="col-sm-9" id="right">
+                      <h1 class="cover-heading">Hi, {{user}}!</h1>
+                </div>
             </div>
           </div>
+
+          <div class="row nopadding">
+            <div class="mastfoot">
+              <div class="container-fluid">
+            
+                <div class="inner">
+                  <p>Created by Italian Herbs and Cheeses</p>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
 
       </div>

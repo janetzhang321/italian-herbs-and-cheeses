@@ -1,0 +1,22 @@
+body, html {
+  margin: 0;
+  overflow: hidden;
+}
+
+
+#left {
+  background-color: #FC6E51;
+  text-align: center;
+  overflow:auto;
+
+}
+
+#right {  
+  background-color: #4FC1E9;
+  text-align: center;
+  overflow:auto;
+}
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}

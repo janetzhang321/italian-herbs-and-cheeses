@@ -14,7 +14,7 @@ $(document).ready(function(){
 	socket.on('send', function(data) {
     	console.log("appending message to chat");
         $('#chat').val($('#chat').val() + data.msg + '\n');
-        console.log("scrollig up");
+        console.log("scrolling up");
         $('#chat').scrollTop($('#chat')[0].scrollHeight);
     });
 
