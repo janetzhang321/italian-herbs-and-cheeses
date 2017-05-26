@@ -12,9 +12,7 @@ $(document).ready(function(){
 	});
 	
 	socket.on('send', function(data) {
-    	console.log("appending message to chat");
-        $('#chat').val($('#chat').val() + data.msg + '\n');
-        console.log("scrolling up");
+    	$('#chat').val($('#chat').val() + data.msg + '\n');
         $('#chat').scrollTop($('#chat')[0].scrollHeight);
     });
 
@@ -28,7 +26,6 @@ $(document).ready(function(){
 	    'msg' : user_input
 	  } );
 
-	  console.log("sent message to server")
 	  $( 'input.message' ).val( '' ).focus();
 	});
 

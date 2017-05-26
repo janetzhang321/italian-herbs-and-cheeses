@@ -1,20 +1,24 @@
 body, html {
   margin: 0;
-  overflow: hidden;
+  overflow: auto;
 }
-
 
 #left {
   background-color: #FC6E51;
   text-align: center;
   overflow:auto;
-
+  right:1em;
 }
 
 #right {  
   background-color: #4FC1E9;
   text-align: center;
   overflow:auto;
+}
+
+#body{
+  height:60%;
+
 }
 .nopadding {
    padding: 0 !important;
