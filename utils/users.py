@@ -16,9 +16,9 @@ def addFriend(username,newFriend):
     c=db.cursor()
     d=db.cursor()
     query1 = "SELECT friend FROM friends WHERE username = \'%s\'"%(username)
-    query2 = "UPDATE friends SET friend = \'%s\' WHERE username = \'%s\'"%(newFriend, username)
-    c.execute(query1)
-
+    preFriendsList = c.execute(query1)
+    friendsList = preFriendsList + ",%s"%(newFriend)
+    query2 = "UPDATE friends SET friend = \'%s\' WHERE username = \'%s\'"%(friendsList, username)
     db.commit()
     db.close()
     return "success"

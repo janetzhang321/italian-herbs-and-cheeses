@@ -31,7 +31,6 @@ def root():
     else:
         return redirect(url_for("home"))
 
-
 @app.route("/home/", methods = ['GET','POST'])
 def home():
     if 'Username' not in session:
@@ -67,6 +66,16 @@ def authenticate():
             session["Username"] = user
             return redirect(url_for('home'))#,success="You have logged in"))
         return redirect(url_for('log', status=text))
+
+@app.route("/addFriend/", methods=["POST"])
+def addFriend():
+    newFriend = request.form["newFriend"]
+    users.addFriend(session["Username"],newFriend)
+    return redirect(url_for("home"))
+
+#@app.route("/myprofile/")
+#def myProfile():
+#    return render_template(
 
 @app.route("/vid/")
 def video():

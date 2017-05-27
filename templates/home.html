@@ -18,6 +18,11 @@
   <link href="/static/css/home.css" rel="stylesheet">
   <!-- JS -->
   <script src="/static/js/home.js"></script>
+  <style>
+  #form{
+    padding: 5em;
+  }
+  </style>
 </head>
 
 
@@ -55,17 +60,12 @@
                 </div>
           </div>
 
-          <div class="row">
-            <div class="mastfoot">
-              <div class="container-fluid">
-            
-                <div class="inner">
-                  <p>Created by Italian Herbs and Cheeses</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          <div id="form">
+            <form id="addFriend" action = "/addFriend/" method = "POST">
+        <b>Name:</b> <input class="input" type="text" name="newFriend" value="lindsey" placeholder="ma"><br>
+        <input type="submit" value="Send Request" name="friendRequest">
+      </form>
+  </div>
         </div>
 
       </div>
