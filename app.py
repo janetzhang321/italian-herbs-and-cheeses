@@ -55,6 +55,7 @@ def authenticate():
         regRet = login.register(user,password)#returns an error/success message
         if regRet == 1:
             session["Username"] = user
+            users.initUserDB(user)
             return redirect(url_for('home'))#,success="You have registered"))
         else:
             return redirect(url_for('log', status=regRet))
@@ -67,7 +68,7 @@ def authenticate():
             return redirect(url_for('home'))#,success="You have logged in"))
         return redirect(url_for('log', status=text))
 
-@app.route("/addFriend/", methods=["POST"])
+@app.route("/addfriend/", methods=["POST"])
 def addFriend():
     newFriend = request.form["newFriend"]
     users.addFriend(session["Username"],newFriend)
