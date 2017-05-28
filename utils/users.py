@@ -78,7 +78,7 @@ def getFriendList(user):
     c=db.cursor()
     retList = []
     query = "SELECT friend FROM friends WHERE user = \'%s\'"%(user)
-    friends = c.execute(query1)
+    friends = c.execute(query)
     for entry in friends:
         friendsList = entry[0]
     friendsArr = friendsList.split(",")
@@ -86,6 +86,12 @@ def getFriendList(user):
         retList.append(entry)
     db.close()
     return retList
+
+#def getBlocked(user):
+
+#def getFriendRequests(user):
+
+#def getSentFriendRequests(user):
 
 
     

@@ -74,9 +74,15 @@ def addFriend():
     users.addFriend(session["Username"],newFriend)
     return redirect(url_for("home"))
 
-#@app.route("/myprofile/")
-#def myProfile():
-#    return render_template(
+@app.route("/myprofile/")
+def myProfile():
+    user = session["Username"]
+    friendList = users.getFriendList(user)
+    myFriends="<br>".join(friendList)
+    blocked=""
+    friendRequests=""
+    sentFriendRequests=""
+    return render_template("myprofile.html",myFriends=myFriends,blocked=blocked,friendRequests=friendRequests,sentFriendRequests=sentFriendRequests)
 
 @app.route("/vid/")
 def video():
