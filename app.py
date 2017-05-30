@@ -31,7 +31,6 @@ def root():
     else:
         return redirect(url_for("home"))
 
-
 @app.route("/home/", methods = ['GET','POST'])
 def home():
     if 'Username' not in session:
@@ -56,6 +55,7 @@ def authenticate():
         regRet = login.register(user,password)#returns an error/success message
         if regRet == 1:
             session["Username"] = user
+            users.initUserDB(user)
             return redirect(url_for('home'))#,success="You have registered"))
         else:
             return redirect(url_for('log', status=regRet))
@@ -67,6 +67,22 @@ def authenticate():
             session["Username"] = user
             return redirect(url_for('home'))#,success="You have logged in"))
         return redirect(url_for('log', status=text))
+
+@app.route("/addfriend/", methods=["POST"])
+def addFriend():
+    newFriend = request.form["newFriend"]
+    users.addFriend(session["Username"],newFriend)
+    return redirect(url_for("home"))
+
+@app.route("/myprofile/")
+def myProfile():
+    user = session["Username"]
+    friendList = users.getFriendList(user)
+    myFriends="<br>".join(friendList)
+    blocked=""
+    friendRequests=""
+    sentFriendRequests=""
+    return render_template("myprofile.html",myFriends=myFriends,blocked=blocked,friendRequests=friendRequests,sentFriendRequests=sentFriendRequests)
 
 @app.route("/vid/")
 def video():
