@@ -14,12 +14,12 @@ def initUserDB(user):
     c1.execute(query1)
     
     c2=db.cursor()
-    query2 = "INSERT INTO friends VALUES(\'%s\',\"\",\"\")" %(user)
+    query2 = "INSERT INTO friends VALUES(\'%s\',\"\")" %(user)
     c2.execute(query2)
     
-    c3=db.cursor()
-    query3 = "INSERT INTO friendRequests VALUES(\'%s\',\"\")" %(user)
-    c3.execute(query3)
+    #c3=db.cursor()
+    #query3 = "INSERT INTO friendRequests VALUES(\'%s\',\"\")" %(user)
+    #c3.execute(query3)
     
     c4=db.cursor()
     query4 = "INSERT INTO blocked VALUES(\'%s\',\"\")" %(user)
@@ -41,6 +41,7 @@ def addFriend(user,newFriend):
     c=db.cursor()
     query1 = "SELECT friend FROM friends WHERE user = \'%s\'"%(user)
     item = c.execute(query1)
+    preFriendsList = ""
     for entry in item:
         preFriendsList = entry[0]
     if (preFriendsList == ""):
@@ -52,31 +53,61 @@ def addFriend(user,newFriend):
     c.execute(query2)
     db.commit()
     db.close()
-    return "success"
+    return 1
 
-def addFriendRequest(user,FriendRequest):
+def addFriendRequest(sender,receiver):
     db=sqlite3.connect(db1)
     c=db.cursor()
-    query1 = "SELECT friendRequest FROM friendRequests WHERE users = \'%s\'"%(user)
-    item = c.execute(query1)
-    for entry in item:
-        requests = entry[0]
-    requestsArr = requests.split(",")
-    if (FriendRequest in requestsArr): return "request already sent"  
-
-    if (requests == ""):
-        requests = FriendRequest
-    else:
-        requests = requests + ",%s"%(FriendRequest)
-    query2 = "UPDATE friendRequests SET request = \'%s\' WHERE user = \'%s\'"%(FriendRequest,user)
+    query1 = "SELECT * FROM friendRequests"
+    friendRequestsList = c.execute(query1)
+    for entry in friendRequestsList:
+        if (entry[0]==sender and entry[1]==receiver): return 0
+    query2 = "INSERT INTO friendRequests VALUES(\'%s\',\'%s\')"%(sender,receiver)
+    c.execute(query2)
     db.commit()
     db.close()
-    return "success"
+    return 1
+
+def acceptFriendRequest(sender,receiver):
+    db=sqlite3.connect(db1)
+    c=db.cursor()
+    query = "DELETE FROM friendRequests WHERE sender = \'%s\' AND receiver = \'%s\'"%(sender,receiver)
+    c.execute(query)
+    addFriend(user,receiver)
+    addFriend(receiver,user)
+    db.commit()
+    db.close()
+    return 1
+
+#not tested
+def addBlock(user,blocked):
+    db=sqlite3.connect(db1)
+    c=db.cursor()
+    query1 = "SELECT blocked FROM blocks WHERE user = \'%s\'"(user)
+    blocks = c.execute(query1)
+    for entry in blocks:
+        if (entry==blocked): return 0
+    query2 = "INSERT INTO blocks VALUEs(\'%s\',\'%s\')"%(user,blocked)
+    c.execute(query2)
+    db.commit()
+    db.close()
+    return 1
+
+#not tested
+def removeBlock(user,blocked):
+    db=sqlite3.connect(db1)
+    c=db.cursor()
+    query = "DELETE FROM blocks WHERE user = \'%s\' AND blocked = \'%s\'"(user,blocked)
+    c.execute(query)
+    db.commit()
+    db.close()
+    return 1
 
 def getFriendList(user):
     db=sqlite3.connect(db1)
     c=db.cursor()
     retList = []
+    friendsList=""
     query = "SELECT friend FROM friends WHERE user = \'%s\'"%(user)
     friends = c.execute(query)
     for entry in friends:
@@ -87,9 +118,29 @@ def getFriendList(user):
     db.close()
     return retList
 
-#def getBlocked(user):
+def getBlocks(user):
+    db=sqlite3.connect(db1)
+    c=db.cursor()
+    retList=[]
+    query = "SELECT blocked FROM blocks WHERE user = \'%s\'"%(user)
+    blocksList = c.execute(query)
+    for entry in blocksList:
+        retList.append(entry[0])
+    db.commit()
+    db.close()
+    return retList
 
-#def getFriendRequests(user):
+def getFriendRequests(user):
+    db=sqlite3.connect(db1)
+    c=db.cursor()
+    retList=[]
+    query = "SELECT sender FROM friendRequests WHERE receiver=\'%s\'"%(user)
+    friendRequestsList = c.execute(query)
+    for entry in friendRequestsList:
+        retList.append(entry[0])
+    db.commit()
+    db.close()
+    return retList
 
 #def getSentFriendRequests(user):
 

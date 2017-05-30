@@ -71,7 +71,8 @@ def authenticate():
 @app.route("/addfriend/", methods=["POST"])
 def addFriend():
     newFriend = request.form["newFriend"]
-    users.addFriend(session["Username"],newFriend)
+    user = session["Username"]
+    users.addFriendRequest(user,newFriend)
     return redirect(url_for("home"))
 
 @app.route("/myprofile/")
@@ -79,10 +80,12 @@ def myProfile():
     user = session["Username"]
     friendList = users.getFriendList(user)
     myFriends="<br>".join(friendList)
-    blocked=""
-    friendRequests=""
-    sentFriendRequests=""
-    return render_template("myprofile.html",myFriends=myFriends,blocked=blocked,friendRequests=friendRequests,sentFriendRequests=sentFriendRequests)
+    blockList = users.getBlocks(user)
+    myBlocks="<br>".join(blockList)
+    friendRequestsList = users.getFriendRequests(user)
+    myFriendRequests = "<br>".join(friendRequestsList)
+
+    return render_template("myprofile.html",myFriends=myFriends,blocked=myBlocks,friendRequests=myFriendRequests)
 
 @app.route("/vid/")
 def video():
@@ -93,9 +96,6 @@ def logout():
     if "Username" in session: 
         session.pop("Username")
     return redirect(url_for("log"))
-
-
-
 
 @app.route("/chat/<identifier>", methods=['GET','POST'])
 def room(identifier):

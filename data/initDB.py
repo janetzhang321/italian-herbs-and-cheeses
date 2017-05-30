@@ -15,17 +15,17 @@ c.execute(q)
 #q = "INSERT INTO profiles VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
 
-q = "CREATE TABLE friends (user TEXT, friend TEXT, request TEXT)"
+q = "CREATE TABLE friends (user TEXT, friend TEXT)"
 c.execute(q)
 #q = "INSERT INTO friends VALUES(\'%s\',\'%s\',\'%s\')" %("admin","test","request")
 #c.execute(q)
 
-q = "CREATE TABLE friendRequests (user TEXT, friendRequest TEXT)"
+q = "CREATE TABLE friendRequests (sender TEXT, receiver TEXT)"
 c.execute(q)
 #q = "INSERT INTO friendRequests VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
 
-q = "CREATE TABLE blocked (user TEXT, friend TEXT)"
+q = "CREATE TABLE blocks (user TEXT, blocked TEXT)"
 c.execute(q)
 #q = "INSERT INTO blocked VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
