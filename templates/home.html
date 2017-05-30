@@ -48,7 +48,15 @@
 
                 <div class="col-sm-3" id="left">
                       <div class="row row-eq-height lined">
-                        <div class="col-sm-12">Friend 1</div>
+                        <div class="col-sm-12">
+                          <form id="addFriend" action = "/addfriend/" method = "POST">
+
+                            <b>Add a friend:</b> 
+                            <input class="input blacktext" type="text" name="newFriend" value="lindsey" placeholder="Username">
+                            <input class="blacktext" type="submit" value="Add" name="friendRequest">
+                          
+                          </form>
+                        </div>
                       </div>
 
                       <div class="row row-eq-height lined">
@@ -70,13 +78,10 @@
                 </div>
           </div>
 
-          <div id="form">
-            <form id="addFriend" action = "/addfriend/" method = "POST">
-              <b>Name:</b> <input class="input" type="text" name="newFriend" value="lindsey" placeholder="ma"><br>
-              <input type="submit" value="Send Request" name="friendRequest">
-            </form>
+          <div>
+            lInDsEy Ma
           </div>
-          
+
         </div>
 
       </div>
