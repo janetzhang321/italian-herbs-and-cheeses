@@ -3,7 +3,7 @@ var socket = io.connect( 'http://' + document.domain + ':' + location.port )
 $(document).ready(function(){
 	// broadcast a message
 	socket.on( 'connect', function() {
-		socket.emit( 'joined', {});
+		socket.emit( 'joined', {'room':room});
 	});	
 
 	socket.on( 'status', function(data){
@@ -23,11 +23,25 @@ $(document).ready(function(){
 
 	  
 	  socket.emit( 'message', {
-	    'msg' : user_input
+	    'msg' : user_input,
+	    'room' : room
 	  } );
 
 	  $( 'input.message' ).val( '' ).focus();
 	});
 
 	
+	var scrolled = false;
+	function updateScroll(){
+	    if(!scrolled){
+	        var element = document.getElementById("chat");
+	        element.scrollTop = element.scrollHeight;
+	    }
+	}
+
+	$("#yourDivID").on('scroll', function(){
+	    scrolled=true;
+	});	
+
+
 });

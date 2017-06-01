@@ -1,6 +1,5 @@
-
 from flask import Flask, render_template, request, url_for, session, redirect
-from flask_socketio import SocketIO, emit
+from flask_socketio import join_room, leave_room, SocketIO, emit
 from datetime import datetime
 from utils import login, users, chat
 
@@ -14,15 +13,24 @@ socketio = SocketIO(app)
 
 
 @socketio.on('joined')
-def handle_connections(msg):
-    socketio.emit('status',{'msg': session['Username'] + ' has entered the room.' });
+def handle_connections(data):
+    username = session['Username']
+    room = data['room']
+    join_room(room)
+    socketio.emit('status', {'msg': username + ' has entered the room.' }, room=room);
 
 @socketio.on('message')
-def handle_messages(msgy):
-    socketio.emit('send',  {'msg': session['Username'] + ': ' + msgy['msg'] });
+def handle_messages(data):
+    username = session['Username']
+    room = data['room']
+    socketio.emit('send',  {'msg': username + ': ' + data['msg'] },room=room);
 
-
-
+@socketio.on('leave')
+def handle_leaving(data):
+    username = session['Username']
+    room = data['room']
+    socketio.emit('status', {'msg': username + 'has left the room.'}, room=room)
+    leave_room(room)
 
 @app.route("/")
 def root():
