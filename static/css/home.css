@@ -2,6 +2,8 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
   overflow:hidden;
   height: 100%;
   margin: 0;
+  background-color:#FFE4E1;
+  color:red;
 }
 
 #body{
@@ -14,6 +16,9 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
 
 .lined {
   border: 1px solid;
+  border-color: #D3D3D3;
+  border-radius: 10px;
+  padding: 25px;
 }
 
 
@@ -22,8 +27,7 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
 }
 
 #left {
-  color:white;
-  background-color: #002200;
+  background-color: #FFFAFA;
   text-align: center;
   overflow:auto;
 }
@@ -37,7 +41,7 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
 
 #right {  
   color:black;
-  background-color: #e6ffe6;
+  background-color: #FFFAFA;
   text-align: center;
   overflow:auto;
   
