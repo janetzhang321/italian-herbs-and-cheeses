@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 	// broadcast a message
 	socket.on( 'connect', function() {
-		socket.emit( 'joined', {'room':room});
+		socket.emit( 'joined', {'room'=room});
 	});	
 
 	socket.on( 'status', function(data){
