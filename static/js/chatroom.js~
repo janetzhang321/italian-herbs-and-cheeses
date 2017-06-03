@@ -39,7 +39,7 @@ $(document).ready(function(){
 	    }
 	}
 
-	$("#chat").on('scroll', function(){
+	$("#yourDivID").on('scroll', function(){
 	    scrolled=true;
 	});	
 
