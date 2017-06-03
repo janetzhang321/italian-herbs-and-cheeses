@@ -146,8 +146,9 @@ def htmlify_FriendRequests(user):
     friendRequestList = getFriendRequests(user)
     friendRequest_str = ""
     for entry in friendRequestList:
+        friendRequest_str+="<div class='friendRequest_button'>"
         friendRequest_str+="<a href='/myprofile/'>%s</a>"%(entry) #href= ajax to call js function accept fr
-        friendRequest_str+="<br>"
+        friendRequest_str+="</div><br>"
     return friendRequest_str
     
     

@@ -83,19 +83,20 @@ def authenticate():
 def addFriend():
     newFriend = request.form["newFriend"]
     user = session["Username"]
-    users.addFriendRequest(user,newFriend)
-    return redirect(url_for("home"))
+    error_msg = ""
+    if not (users.addFriendRequest(user,newFriend)): error_msg = "That username does not exist"
+    return redirect(url_for("home"), status = error_msg)
 
 @app.route("/myprofile/")
 def myProfile():
+    if 'Username' not in session:
+        return redirect(url_for("log"))
     user = session["Username"]
     friendList = users.getFriendList(user)
     myFriends="<br>".join(friendList)
     blockList = users.getBlocks(user)
     myBlocks="<br>".join(blockList)
-    friendRequestsList = users.getFriendRequests(user)
-    myFriendRequests = "<br>".join(friendRequestsList)
-
+    myFriendRequests = users.htmlify_FriendRequests(user)
     return render_template("myprofile.html",myFriends=myFriends,blocked=myBlocks,friendRequests=myFriendRequests)
 
 @app.route("/vid/")
