@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, url_for, session, redirect
-import hashlib, sqlite3
+import sqlite3
 
 db1 = "data/database.db"
 

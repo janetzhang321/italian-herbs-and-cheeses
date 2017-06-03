@@ -44,10 +44,10 @@ def home():
     if 'Username' not in session:
         return redirect(url_for("log"))
     else:
-
         username=session['Username']
         friends = users.getFriendList(username)
         chatrooms = chat.getChatrooms()
+        
         return render_template("home.html",user=username,chatrooms=chatrooms,friends=friends)
 
 @app.route("/login/")

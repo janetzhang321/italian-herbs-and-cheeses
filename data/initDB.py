@@ -30,5 +30,12 @@ c.execute(q)
 #q = "INSERT INTO blocked VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
 
+q = "CREATE TABLE chatRooms (roomId TEXT, username TEXT)"
+c.execute(q)
+
+q = "CREATE TABLE chatNames (roomId TEXT, roomName TEXT)"
+c.execute(q)
+
+
 db.commit() #save changes
 db.close()  #close database
