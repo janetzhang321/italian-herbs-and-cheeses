@@ -35,8 +35,8 @@
                 <h3 class="masthead-brand">ooWoo</h3>
                 <nav>
                   <ul class="nav masthead-nav">
-                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                    <li><a data-toggle="tab" href="/myprofile/">{{user}}</a></li>
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="/myprofile/">{{user}}</a></li>
                     <li><a href="/logout/">Logout</a></li>
                   </ul>
                 </nav>
@@ -58,31 +58,19 @@
                           </form>
                         </div>
                       </div>
+                      {% if friends|length > 0 %}
+                        {% for friend in friends %}
+                          <div class="row row-eq-height lined">
+                            <div class="col-sm-12">{{friend}}</div>
+                          </div>
+                        {% endfor %}
+                      {%else%}
+                        <div class="row row-eq-height unlined">
+                          No friends yet!
+                        </div>
+                      {% endif %}
+                    
 
-                      <div class="row row-eq-height lined">
-                        <div class="col-sm-12">Michael</div>
-                      </div>
-
-                      <div class="row row-eq-height lined">
-                        <div class="col-sm-12">Harry</div>
-                      </div>
-
-                      <div class="row row-eq-height lined">
-                        <div class="col-sm-12">Harry</div>
-                      </div>
-                      <div class="row row-eq-height lined">
-                        <div class="col-sm-12">Harry</div>
-                      </div>
-                      <div class="row row-eq-height lined">
-                        <div class="col-sm-12">Harry</div>
-                      </div>
-                      <div class="row row-eq-height lined">
-                        <div class="col-sm-12">Janet</div>
-                      </div>
-
-                      <div class="row row-eq-height lined">
-                        <div class="col-sm-12">Lindsey</div>
-                      </div>
 
 
                 </div>
