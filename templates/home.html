@@ -52,6 +52,8 @@
           <div class="row row-eq-height" id="body">
 
                 <div class="col-sm-3" id="left">
+                      
+
                       <div class="row row-eq-height search">
                         <div class="col-sm-12">
                           <form id="addFriend" action = "/addfriend/" method = "POST">
@@ -64,14 +66,23 @@
                         </div>
                       </div>
                       
-                      {% for chatRoom in chatRooms %}
+
+                      <form>
+                          <a href="">
                           <div class="row row-eq-height lined">
-                            <div class="col-sm-12" id="{{chatRoom['roomId']">{{chatRoom['roomName']}}</div>
+                              <div class="col-sm-12">Create a chat</div>
                           </div>
-                      {% else %}
-                        <div class="row row-eq-height unlined">
-                          No chatrooms yet!
+                          </a>
+                      </form>
+
+                      {% for chatRoom in chatRooms %}
+                      <form>
+                        <a href="">
+                        <div class="row row-eq-height lined">
+                          <div class="col-sm-12 chatRoom" id="{{chatRoom['roomId']}}">{{chatRoom['roomName']}}</div>
                         </div>
+                        </a>
+                      </form>
                       {% endfor %}
 
 
