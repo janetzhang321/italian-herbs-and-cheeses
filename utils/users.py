@@ -21,7 +21,7 @@ def initUserDB(user):
     #c3.execute(query3)
     
     c4=db.cursor()
-    query4 = "INSERT INTO blocked VALUES(\'%s\',\"\")" %(user)
+    query4 = "INSERT INTO blocks VALUES(\'%s\',\"\")" %(user)
     c4.execute(query4)
 
     db.commit()
@@ -141,8 +141,13 @@ def getFriendRequests(user):
     db.close()
     return retList
 
-#def getSentFriendRequests(user):
-
-
+def htmlify_FriendRequests(user):
+    friendRequestList = getFriendRequests(user)
+    friendRequest_str = ""
+    for entry in friendRequestList:
+        friendRequest_str+="<div class='friendRequest_button'>"
+        friendRequest_str+="<a href='/myprofile/'>%s</a>"%(entry) #href= ajax to call js function accept fr
+        friendRequest_str+="</div><br>"
+    return friendRequest_str
     
     
