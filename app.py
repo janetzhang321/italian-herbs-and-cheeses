@@ -46,9 +46,10 @@ def home():
     else:
         username=session['Username']
         friends = users.getFriendList(username)
-        chatrooms = chat.getChatrooms()
-        
-        return render_template("home.html",user=username,chatrooms=chatrooms,friends=friends)
+        chatRooms = chat.getChatRooms(username)
+
+
+        return render_template("home.html",user=username,chatRooms=chatRooms,friends=friends)
 
 @app.route("/login/")
 def log():

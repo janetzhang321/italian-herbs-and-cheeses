@@ -44,6 +44,7 @@ def addUserToRoom(username,roomId):
         query2 = "INSERT INTO chatRooms VALUES (?,?)"
         c.execute(query2,(roomId,username))
 
+
         db.commit()
         db.close()
         return True #user added
@@ -56,10 +57,13 @@ def getChatRooms(username):
     db=sqlite3.connect(db1)
     c=db.cursor()
 
-    query1 = "SELECT roomId FROM chatRooms WHERE username=?"
+    query1 = "SELECT chatNames.roomId,chatNames.roomName FROM chatRooms,chatNames WHERE chatRooms.username=? and chatRooms.roomId = chatNames.roomId"
     records = c.execute(query1,(username,))
     for x in records:
-        ans.append(x[0])
+        ans.append({
+                    'roomId':x[0],
+                    'roomName':x[1]
+                    })
     db.close()
     return ans
 
@@ -111,17 +115,14 @@ def getUsersIn(roomId):
 #tests
 if __name__ == '__main__':
     os.chdir("..")
-    roomId = createRoom("hello","michael","harry")
-    print roomId
-    print getUsersIn(roomId)
-    leaveRoom("harry",roomId)
-    print getUsersIn(roomId)
-    addUserToRoom("lindsey",roomId)
-    print getUsersIn(roomId)
-    print getRoomName(roomId)
-    print getChatRooms("michael")
-    for roomId in getChatRooms("michael"):
-        deleteRoom(roomId)
-    print getChatRooms("lindsey")
-    print getChatRooms("michael")
     
+    roomId = createRoom("dylo","michael","harry")
+    roomId = createRoom("dylo","michael","harry")
+    roomId = createRoom("dylo","michael","harry")
+    roomId = createRoom("dylo","michael","harry")
+    roomId = createRoom("dylo","michael","harry")
+    
+    print getChatRooms("michael")
+
+    for room in getChatRooms("michael"):
+        deleteRoom(room['roomId'])
