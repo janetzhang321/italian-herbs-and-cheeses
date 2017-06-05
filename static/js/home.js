@@ -28,11 +28,13 @@ $(document).ready(function(){
 		                </p>');
 	};
 
-
-	$('.chatRoom').click(function(){
+	$('.chatRoom').click(function(event){
+		console.log("hello")
+		event.preventDefault();
+		console.log("hello");
 		// broadcast a message
-		var room = $(this).attr('id')
-		
+		var room = $(".realChat",this).attr('id');
+		console.log(room)
 		socket.on( 'connect', function() {
 			socket.emit( 'joined', {'room':room});
 		});	

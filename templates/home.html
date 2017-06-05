@@ -77,9 +77,9 @@
 
                       {% for chatRoom in chatRooms %}
                       <form>
-                        <a href="">
+                        <a class="chatRoom" href="">
                         <div class="row row-eq-height lined"> 
-                          <div class="col-sm-12 chatRoom" id="{{chatRoom['roomId']}}">{{chatRoom['roomName']}}</div>
+                          <div class="col-sm-12 realChat" id="{{chatRoom['roomId']}}">{{chatRoom['roomName']}}</div>
                         </div>
                         </a>
                       </form>
@@ -91,7 +91,7 @@
 
                 <div class="col-sm-9" id="right">
                   <div class="menu">
-                      <a href="#" class="back"><i class="fa fa-angle-left"></i> <img src="https://i.imgur.com/G4EjwqQ.jpg" draggable="false"/></a>
+                      <a href="#" class="back"><i class="fa fa-angle-left"></i> <img src="/static/img/group_picture.png" draggable="false"/></a>
                       <div class="name">
                         {{chatname}}
                       </div>
@@ -104,8 +104,10 @@
                   </ol>
 
                   <div class="typezone">
-                  <form><textarea type="text" placeholder="Say something"></textarea><input type="submit" class="send" value=""/></form>
-                  
+                    <form>
+                      <input type="text" placeholder="Say something" id="msgsent">
+                    </form>
+                    <button type="submit" class="btn btn-default">Send</button>
                   </div>
 
                 </div>
