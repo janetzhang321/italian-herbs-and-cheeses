@@ -18,6 +18,7 @@ def handle_connections(data):
     username = session['Username']
     room = data['room']
     join_room(room)
+    print('yes')
     socketio.emit('status', {'msg': username + ' has entered the room.' }, room=room);
 
 @socketio.on('message')
@@ -48,9 +49,9 @@ def home():
         username=session['Username']
         friends = users.getFriendList(username)
         chatRooms = chat.getChatRooms(username)
+        options = chat.htmlify_dropdownFriends(username)
 
-
-        return render_template("home.html",user=username,chatRooms=chatRooms,friends=friends)
+        return render_template("home.html",user=username,chatRooms=chatRooms,friends=friends,options=options)
 
 @app.route("/login/")
 def log():

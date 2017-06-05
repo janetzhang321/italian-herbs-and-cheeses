@@ -1,5 +1,5 @@
-var socket = io.connect( 'http://' + document.domain + ':' + location.port )
 
+var socket = io.connect( 'http://' + document.domain + ':' + location.port )
 $(document).ready(function(){
 
 
@@ -29,12 +29,13 @@ $(document).ready(function(){
 	};
 
 	$('.chatRoom').click(function(event){
-		console.log("hello")
+		
 		event.preventDefault();
-		console.log("hello");
+
 		// broadcast a message
 		var room = $(".realChat",this).attr('id');
-		console.log(room)
+		
+		
 		socket.on( 'connect', function() {
 			socket.emit( 'joined', {'room':room});
 		});	
@@ -47,7 +48,8 @@ $(document).ready(function(){
 	    	addSelfMsg(data.msg,data.time);
 	  	});
 
-		var form = $( 'form' ).on( 'submit', function( e ) {
+		console.log("hello");
+		var form = $( '#msgform' ).on( 'submit', function( e ) {
 		  e.preventDefault();
 		  
 		  let user_input = $('#msgsent').val();

@@ -40,6 +40,8 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
   background: #eef8ff;
   text-align: center;
   overflow:auto;
+  color:black;
+  text-shadow:none;
 }
 
 .row-eq-height {
