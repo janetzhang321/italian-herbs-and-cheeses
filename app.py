@@ -98,7 +98,7 @@ def myProfile():
     blockList = users.getBlocks(user)
     myBlocks="<br>".join(blockList)
     myFriendRequests = users.htmlify_FriendRequests(user)
-    return render_template("myprofile.html",myFriends=myFriends,blocked=myBlocks,friendRequests=myFriendRequests)
+    return render_template("myprofile.html",user=user,myFriends=myFriends,blocked=myBlocks,friendRequests=myFriendRequests)
 
 @app.route("/vid/")
 def video():
