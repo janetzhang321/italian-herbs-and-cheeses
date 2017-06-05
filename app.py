@@ -86,7 +86,7 @@ def addFriend():
     user = session["Username"]
     error_msg = ""
     if not (users.addFriendRequest(user,newFriend)): error_msg = "That username does not exist"
-    return redirect(url_for("home"), status = error_msg)
+    return redirect(url_for("home", status = error_msg))
 
 @app.route("/myprofile/")
 def myProfile():

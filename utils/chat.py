@@ -2,6 +2,7 @@ import sqlite3
 import string
 import random
 import os
+from time import gmtime, strftime
 
 db1 = "data/database.db"
 
@@ -112,17 +113,42 @@ def getUsersIn(roomId):
     db.close()
     return ans
 
+def addMessage(roomId,username,msg):
+    db=sqlite3.connect(db1)
+    c=db.cursor()    
+
+    hora = strftime("%m-%d %H:%M", gmtime())
+    query1 = "INSERT INTO chatMessages VALUES (?,?,?,?)"
+    c.execute(query1,(roomId,username,msg,hora))
+
+    db.commit()
+    db.close()
+        
+def getMessagesFor(roomId):
+    ans = []
+    
+    db = sqlite3.connect(db1)
+    c = db.cursor()
+    data = c.execute("SELECT username,msg,hora FROM chatMessages WHERE roomId=?",(roomId,))
+
+    for x in data:
+        ans.append({
+                    'username':x[0],
+                    'msg':x[1],
+                    'time':x[2]
+                    })
+
+    db.close()
+    return ans
+
+
+
+
 #tests
 if __name__ == '__main__':
     os.chdir("..")
-    
-    roomId = createRoom("dylo","michael","harry")
-    roomId = createRoom("dylo","michael","harry")
-    roomId = createRoom("dylo","michael","harry")
-    roomId = createRoom("dylo","michael","harry")
-    roomId = createRoom("dylo","michael","harry")
-    
-    print getChatRooms("michael")
 
-    for room in getChatRooms("michael"):
-        deleteRoom(room['roomId'])
+    roomId = createRoom("dylo","michael","harry")
+    addMessage(roomId,"michael","hello")
+    addMessage(roomId,"yellow","hello")
+    print getMessagesFor(roomId)
