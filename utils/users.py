@@ -38,6 +38,7 @@ def editProfile(user,about):
 def addFriend(user,newFriend):
     db=sqlite3.connect(db1)
     c=db.cursor()
+    print "in addfriend"
     query1 = "SELECT friend FROM friends WHERE user = \'%s\'"%(user)
     item = c.execute(query1)
     preFriendsList = ""
@@ -70,12 +71,13 @@ def addFriendRequest(sender,receiver):
 def acceptFriendRequest(sender,receiver):
     db=sqlite3.connect(db1)
     c=db.cursor()
+    print "accept fr"
     query = "DELETE FROM friendRequests WHERE sender = \'%s\' AND receiver = \'%s\'"%(sender,receiver)
     c.execute(query)
-    addFriend(user,receiver)
-    addFriend(receiver,user)
     db.commit()
     db.close()
+    addFriend(sender,receiver)
+    addFriend(receiver,sender)
     return 1
 
 #not tested
@@ -146,7 +148,7 @@ def htmlify_FriendRequests(user):
     friendRequest_str = ""
     for entry in friendRequestList:
         friendRequest_str+="<div class='friendRequest_button'>"
-        friendRequest_str+="<a href='/myprofile/'>%s</a>"%(entry) #href= ajax to call js function accept fr
+        friendRequest_str+="<input type=button value='%s' onclick='acceptFriendRequest(\"%s\")'></button>"%(entry,entry) #href= ajax to call js function accept fr
         friendRequest_str+="</div><br>"
     return friendRequest_str
     
