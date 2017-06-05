@@ -29,34 +29,36 @@ $(document).ready(function(){
 	};
 
 
+	$('.chatRoom').click(function(){
+		// broadcast a message
+		var room = $(this).attr('id')
+		
+		socket.on( 'connect', function() {
+			socket.emit( 'joined', {'room':room});
+		});	
 
-	// broadcast a message
-	socket.on( 'connect', function() {
-		socket.emit( 'joined', {'room':room});
-	});	
+		socket.on( 'status', function(data){
+			addNotification(data.msg,data.time)
+		});
+		
+		socket.on('send', function(data) {
+	    	addSelfMsg(data.msg,data.time);
+	  	});
 
-	socket.on( 'status', function(data){
-		addNotification(data.msg,data.time)
+		var form = $( 'form' ).on( 'submit', function( e ) {
+		  e.preventDefault();
+		  
+		  let user_input = $('#msgsent').val();
+
+		  
+		  socket.emit( 'message', {
+		    'msg' : user_input,
+		    'room' : room
+		  } );
+
+		  $( 'input.message' ).val( '' ).focus();
+		});
 	});
-	
-	socket.on('send', function(data) {
-    addSelfMsg(data.msg,data.time);
-  });
-
-	var form = $( 'form' ).on( 'submit', function( e ) {
-	  e.preventDefault();
-	  
-	  let user_input = $('#msgsent').val();
-
-	  
-	  socket.emit( 'message', {
-	    'msg' : user_input,
-	    'room' : room
-	  } );
-
-	  $( 'input.message' ).val( '' ).focus();
-	});
-	
 });
 
 

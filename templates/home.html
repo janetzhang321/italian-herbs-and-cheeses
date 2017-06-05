@@ -78,7 +78,7 @@
                       {% for chatRoom in chatRooms %}
                       <form>
                         <a href="">
-                        <div class="row row-eq-height lined">
+                        <div class="row row-eq-height lined"> 
                           <div class="col-sm-12 chatRoom" id="{{chatRoom['roomId']}}">{{chatRoom['roomName']}}</div>
                         </div>
                         </a>
@@ -101,38 +101,20 @@
                   </div>
 
                   <ol class="chat">
-                  
-                  <li class="other">
-                    <div class="msg">
-                        <div class="user">{{username2}}
-                      <p>{{msg}}</p>
-                      <time>{{time}}</time>
-                    </div>
-                  </li>
-                  
-                  <li class="self">
-                    <div class="msg">
-                      <p>{{msg}}</p>
-                      <time>{{time}}</time>
-                    </div>
-                  </li>
-                  
-                  <p class="notification"> joined the group 
-                  	<time>{{time}}</time>
-                  </p>
-                  
-                  
                   </ol>
-              <div class="typezone">
-              <form><textarea type="text" placeholder="Say something"></textarea><input type="submit" class="send" value=""/></form>
-              
+
+                  <div class="typezone">
+                  <form><textarea type="text" placeholder="Say something"></textarea><input type="submit" class="send" value=""/></form>
+                  
+                  </div>
+
+                </div>
+
           </div>
 
-        </div>
-
-      </div>
-
     </div>
-
+</div>
+</div>
+</body>
 
 </html>

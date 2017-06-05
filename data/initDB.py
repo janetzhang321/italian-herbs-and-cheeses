@@ -36,6 +36,8 @@ c.execute(q)
 q = "CREATE TABLE chatNames (roomId TEXT, roomName TEXT)"
 c.execute(q)
 
+q = "CREATE TABLE chatMessages (roomId TEXT, username TEXT, msg TEXT, hora TEXT)"
+c.execute(q)
 
 db.commit() #save changes
 db.close()  #close database

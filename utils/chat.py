@@ -1,6 +1,7 @@
 import sqlite3
 import string
 import random
+import users
 import os
 from time import gmtime, strftime
 
@@ -142,7 +143,12 @@ def getMessagesFor(roomId):
     return ans
 
 
-
+def htmlify_dropdownFriends(user):
+    friendList = users.getFriendList(user)
+    dropdownFriends = ""
+    for entry in friendList:
+        dropdownFriends+="<option value=\"%s\">%s</option>"%(entry,entry)
+    return dropdownFriends
 
 #tests
 if __name__ == '__main__':

@@ -102,7 +102,12 @@ def myProfile():
 
 @app.route("/vid/")
 def video():
-    return render_template("minivid.html")
+    if 'Username' not in session:
+        return redirect(url_for("log"))
+    user = session["Username"]
+    options = chat.htmlify_dropdownFriends(user)
+    print options
+    return render_template("minivid2.html",user=user,options=options)
 
 @app.route("/logout/")
 def logout():
