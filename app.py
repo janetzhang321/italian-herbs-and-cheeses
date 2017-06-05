@@ -124,6 +124,14 @@ def logout():
         session.pop("Username")
     return redirect(url_for("log"))
 
+@app.route("/createroom/", methods=['GET','POST'])
+def createroom():
+    roomname = request.form['chatname']
+    friend = request.form['friend']
+    username = session['Username']
+    chat.createRoom(roomname,username,friend)
+    return  redirect(url_for("home"))
+
 @app.route("/chat/<identifier>", methods=['GET','POST'])
 def room(identifier):
     user = session['Username']
