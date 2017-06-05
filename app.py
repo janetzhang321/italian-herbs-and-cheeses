@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, session, redirect
 from flask_socketio import join_room, leave_room, SocketIO, emit
 from datetime import datetime
 from utils import login, users, chat
+import json
 
 
 db = "data/database.db"
@@ -88,6 +89,14 @@ def addFriend():
     if not (users.addFriendRequest(user,newFriend)): error_msg = "That username does not exist"
     return redirect(url_for("home", status = error_msg))
 
+@app.route("/acceptFriendRequest/",methods=["POST"])
+def acceptFriendRequest():
+    if 'Username' not in session:
+        return redirect(url_for("log"))
+    print request.form["param"]
+    users.acceptFriendRequest(request.form["param"],session["Username"])
+    return json.dumps({"success":True})
+    
 @app.route("/myprofile/")
 def myProfile():
     if 'Username' not in session:
