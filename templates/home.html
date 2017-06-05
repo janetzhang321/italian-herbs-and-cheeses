@@ -75,6 +75,17 @@
                           </a>
                       </form>
 
+                      <form action="/createroom/" method="POST">
+                          <div class="row row-eq-height lined">
+                              <div class="col-sm-12">room name: <input class="input blacktext" type="text" name="chatname">
+                              add: <input class="input blacktext" type="text" name="friend"></div>
+                          
+                          <button class="btn btn-sm btn-primary" type="submit" name="action" value="createroom">Create Room</button>
+                          
+                          </div>
+                          
+                      </form>
+
                       {% for chatRoom in chatRooms %}
                       <form>
                         <a href="">
