@@ -3,7 +3,6 @@ import string
 import random
 import users
 import os
-from time import gmtime, strftime
 
 db1 = "data/database.db"
 
@@ -114,13 +113,13 @@ def getUsersIn(roomId):
     db.close()
     return ans
 
-def addMessage(roomId,username,msg):
+def addMessage(roomId,username,msg,time):
     db=sqlite3.connect(db1)
     c=db.cursor()    
 
-    hora = strftime("%m-%d %H:%M", gmtime())
+    
     query1 = "INSERT INTO chatMessages VALUES (?,?,?,?)"
-    c.execute(query1,(roomId,username,msg,hora))
+    c.execute(query1,(roomId,username,msg,time))
 
     db.commit()
     db.close()

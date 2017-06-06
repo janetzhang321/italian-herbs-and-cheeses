@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, session, redirect
 from flask_socketio import join_room, leave_room, SocketIO, emit
-from datetime import datetime
+from time import gmtime, strftime
 from utils import login, users, chat
 import json
 
@@ -18,8 +18,8 @@ def handle_connections(data):
     username = session['Username']
     room = data['room']
     join_room(room)
-    print('yes')
-    socketio.emit('status', {'msg': username + ' has entered the room.' }, room=room);
+    time = strftime("%m-%d %H:%M", gmtime())
+    socketio.emit('status', {'msg': username + ' has entered the room.', 'time':time }, room=room);
 
 @socketio.on('message')
 def handle_messages(data):

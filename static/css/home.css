@@ -52,6 +52,7 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
 }
 
 #right {
+  color:black;
   text-align:left;  
   text-shadow:none;
   overflow:auto;
