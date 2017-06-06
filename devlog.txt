@@ -81,13 +81,17 @@ michaelW 6/3/2017
 	fixed friend list
 	Accept friend request function
 
+michaelW 6/4/2017
+	worked on caller form for vid
+
 lindseyM 6/3/2017
 	Worked on CSS
 	Worked on search bar for friends
 
 michaelW 6/5/2017
-	Worked on vid form
-	Fixed accept friend request
+	styling for vid
+	changed accepting friend request
+	remove friends feature
 
 lindseyM 6/5/2017
 	Worked on CSS for home and video pages
@@ -97,7 +101,9 @@ janetZ 6/5/2017
 
 harryL 6/5/2017
 	Fixed chatroom 
-	Fixed video 
+	styling for chatroom
+	chat bubbles
+	socket stuff
 
 
 	
