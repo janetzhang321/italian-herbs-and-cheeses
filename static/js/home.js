@@ -1,11 +1,15 @@
 $(document).ready(function(){
 	var room;
 	var socket;
+	var connected = false;
 	$('.chatRoom').click(function(event){
-
-		socket = io.reconnect( 'http://' + document.domain + ':' + location.port );
-		
-		
+		if (connected == false){
+			socket = io.connect( 'http://' + document.domain + ':' + location.port )				
+			connected = true;
+		}else{
+			socket.disconnect();
+			socket.socket.connect();
+		}
 
 		event.preventDefault();
 		$('#chat').empty();
@@ -38,6 +42,7 @@ $(document).ready(function(){
 
 		  $( 'input.message' ).val( '' ).focus();
 		});
+
 	});
 
 
