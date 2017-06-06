@@ -98,17 +98,20 @@ def acceptFriendRequest():
     users.acceptFriendRequest(request.form["param"],session["Username"])
     return json.dumps({"success":True})
     
+@app.route("/deleteFriend/<friend>",methods=['GET','POST'])
+def deleteFriend(friend):
+    user = session['Username']
+    users.deleteFriend(user,friend)
+    return redirect(url_for("myProfile"))
+
 @app.route("/myprofile/")
 def myProfile():
     if 'Username' not in session:
         return redirect(url_for("log"))
     user = session["Username"]
-    friendList = users.getFriendList(user)
-    myFriends="<br>".join(friendList)
-    blockList = users.getBlocks(user)
-    myBlocks="<br>".join(blockList)
+    myFriends = users.htmlify_Friends(user)
     myFriendRequests = users.htmlify_FriendRequests(user)
-    return render_template("myprofile.html",user=user,myFriends=myFriends,blocked=myBlocks,friendRequests=myFriendRequests)
+    return render_template("myprofile.html",user=user,myFriends=myFriends,friendRequests=myFriendRequests)
 
 @app.route("/vid/")
 def video():

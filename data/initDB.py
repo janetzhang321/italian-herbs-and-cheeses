@@ -25,11 +25,6 @@ c.execute(q)
 #q = "INSERT INTO friendRequests VALUES(\'%s\',\'%s\')" %("admin","test")
 #c.execute(q)
 
-q = "CREATE TABLE blocks (user TEXT, blocked TEXT)"
-c.execute(q)
-#q = "INSERT INTO blocked VALUES(\'%s\',\'%s\')" %("admin","test")
-#c.execute(q)
-
 q = "CREATE TABLE chatRooms (roomId TEXT, username TEXT)"
 c.execute(q)
 

@@ -19,10 +19,6 @@ def initUserDB(user):
     #c3=db.cursor()
     #query3 = "INSERT INTO friendRequests VALUES(\'%s\',\"\")" %(user)
     #c3.execute(query3)
-    
-    c4=db.cursor()
-    query4 = "INSERT INTO blocks VALUES(\'%s\',\"\")" %(user)
-    c4.execute(query4)
 
     db.commit()
     db.close()
@@ -38,7 +34,6 @@ def editProfile(user,about):
 def addFriend(user,newFriend):
     db=sqlite3.connect(db1)
     c=db.cursor()
-    print "in addfriend"
     query1 = "SELECT friend FROM friends WHERE user = \'%s\'"%(user)
     item = c.execute(query1)
     preFriendsList = ""
@@ -48,12 +43,32 @@ def addFriend(user,newFriend):
         friendsList = newFriend
     else:   
         friendsList = preFriendsList + ",%s"%(newFriend)
-    print friendsList
     query2 = "UPDATE friends SET friend = \'%s\' WHERE user = \'%s\'"%(friendsList, user)
     c.execute(query2)
     db.commit()
     db.close()
     return 1
+
+def deleteFriend(user,oldFriend):
+    db=sqlite3.connect(db1)
+    c=db.cursor()
+    if oldFriend in getFriendList(user):
+        friends1 = getFriendList(user)
+        friends2 = getFriendList(oldFriend)
+        friends1.remove(oldFriend)
+        friends2.remove(user)
+        newFriendList1_str = ",".join(friends1)
+        newFriendList2_str = ",".join(friends2)
+        print newFriendList1_str
+        print newFriendList2_str
+        query1 = "UPDATE friends SET friend = \'%s\' WHERE user = \'%s\'"%(newFriendList1_str, user)
+        query2 = "UPDATE friends SET friend = \'%s\' WHERE user = \'%s\'"%(newFriendList2_str, oldFriend)
+        c.execute(query1)
+        c.execute(query2)
+        db.commit()
+        db.close()
+    return 1
+
 
 def addFriendRequest(sender,receiver):
     db=sqlite3.connect(db1)
@@ -80,30 +95,6 @@ def acceptFriendRequest(sender,receiver):
     addFriend(receiver,sender)
     return 1
 
-#not tested
-def addBlock(user,blocked):
-    db=sqlite3.connect(db1)
-    c=db.cursor()
-    query1 = "SELECT blocked FROM blocks WHERE user = \'%s\'"(user)
-    blocks = c.execute(query1)
-    for entry in blocks:
-        if (entry==blocked): return 0
-    query2 = "INSERT INTO blocks VALUEs(\'%s\',\'%s\')"%(user,blocked)
-    c.execute(query2)
-    db.commit()
-    db.close()
-    return 1
-
-#not tested
-def removeBlock(user,blocked):
-    db=sqlite3.connect(db1)
-    c=db.cursor()
-    query = "DELETE FROM blocks WHERE user = \'%s\' AND blocked = \'%s\'"(user,blocked)
-    c.execute(query)
-    db.commit()
-    db.close()
-    return 1
-
 def getFriendList(user):
     db=sqlite3.connect(db1)
     c=db.cursor()
@@ -119,18 +110,6 @@ def getFriendList(user):
     db.close()
     return retList
 
-def getBlocks(user):
-    db=sqlite3.connect(db1)
-    c=db.cursor()
-    retList=[]
-    query = "SELECT blocked FROM blocks WHERE user = \'%s\'"%(user)
-    blocksList = c.execute(query)
-    for entry in blocksList:
-        retList.append(entry[0])
-    db.commit()
-    db.close()
-    return retList
-
 def getFriendRequests(user):
     db=sqlite3.connect(db1)
     c=db.cursor()
@@ -142,6 +121,16 @@ def getFriendRequests(user):
     db.commit()
     db.close()
     return retList
+
+def htmlify_Friends(user):
+    friendList = getFriendList(user)
+    friendList_str = ""
+    for entry in friendList:
+        if entry != "":
+            friendList_str+="<div class='friendList_button'>"
+            friendList_str+="%s<a href=\'/deleteFriend/%s\'>Remove</a>"%(entry,entry) #href= ajax to call js function accept fr
+            friendList_str+="</div><br>"
+    return friendList_str
 
 def htmlify_FriendRequests(user):
     friendRequestList = getFriendRequests(user)
