@@ -68,7 +68,7 @@ def getChatRooms(username):
     db.close()
     return ans
 
-def getRoomName(id):
+def getRoomName(roomId):
     db=sqlite3.connect(db1)
     c=db.cursor()
 
