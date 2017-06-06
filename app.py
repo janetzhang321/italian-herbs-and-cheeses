@@ -18,8 +18,8 @@ def handle_connections(data):
     username = session['Username']
     room = data['room']
     join_room(room)
-    time = strftime("%m-%d %H:%M", gmtime())
-    socketio.emit('status', {'msg': username + ' has entered the room. roomid=%s'%(room), 'time':time }, room=room);
+    time = strftime("%H:%M", gmtime())
+    socketio.emit('status', {'msg': username + ' has entered the room.', 'time':time,'username':username }, room=room);
 
 @socketio.on('message')
 def handle_messages(data):
@@ -28,7 +28,7 @@ def handle_messages(data):
     msg = data['msg']
     time = strftime("%m-%d %H:%M", gmtime())
     chat.addMessage(room,username,msg,time)
-    socketio.emit('send',  {'msg': username + ': ' + msg },room=room);
+    socketio.emit('send',  {'msg': msg, 'time':time,'username':username },room=room);
 
 @socketio.on('leave')
 def handle_leaving(data):
@@ -36,7 +36,8 @@ def handle_leaving(data):
     username = session['Username']
     room = data['room']
     leave_room(room)
-    socketio.emit('status', {'msg': username + 'has left the room. roomid=%s'%(room)}, room=room)
+    time = strftime("%H:%M", gmtime())
+    socketio.emit('status', {'msg': username + ' has left the room.', 'time':time}, room=room)
     
 
 @app.route("/")

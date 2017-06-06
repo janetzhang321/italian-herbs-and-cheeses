@@ -22,6 +22,10 @@
   <!-- JS -->
   <script src="/static/js/home.js"></script>
 
+  <script>
+    var username = '{{session['Username']}}'
+    
+  </script>
   
 </head>
 
@@ -92,6 +96,7 @@
                         <a class="chatRoom" href="">
                         <div class="row row-eq-height lined"> 
                           <div class="col-sm-12 realChat" id="{{chatRoom['roomId']}}">{{chatRoom['roomName']}}</div>
+                          <div class="hidden"></div>
                         </div>
                         </a>
                       </form>
@@ -112,7 +117,8 @@
                       </div>
                   </div>
 
-                  <ol id="chat">
+                  <ol class="chat" id="chat">
+
                   </ol>
 
                   <div class="typezone">

@@ -7,8 +7,8 @@ $(document).ready(function(){
 			socket = io.connect( 'http://' + document.domain + ':' + location.port )				
 			connected = true;
 		}else{
-			socket.disconnect();
-			socket.socket.connect();
+			socket.emit('leave',{'room':room})
+			socket = io.reconnect()
 		}
 
 		event.preventDefault();
@@ -21,14 +21,21 @@ $(document).ready(function(){
 		});		
 
 		socket.on( 'status', function(data){
-			addNotification(data.msg,data.time)
+			addNotification(data.msg,data.time);
 		});
 		
 		socket.on('send', function(data) {
-	    	addSelfMsg(data.msg,data.time);
+			console.log(data.username)
+			console.log(username)
+			if (data.username !== username) {	
+				addOtherMsg(data.msg,data.time,data.username);
+			}else{
+				addSelfMsg(data.msg,data.time);
+			}
+	    	
 	  	});
 
-		
+		$('#msgsent').attr('autocomplete', 'off');
 		var form = $( '#msgform' ).on( 'submit', function( e ) {
 		  e.preventDefault();
 		  
@@ -40,7 +47,7 @@ $(document).ready(function(){
 		    'room' : room
 		  } );
 
-		  $( 'input.message' ).val( '' ).focus();
+		  $( '#msgsent' ).val( '' ).focus();
 		});
 
 	});
@@ -66,10 +73,22 @@ $(document).ready(function(){
 	};
 
 	var addNotification = function(msg,time){
-		 $("#chat").append('<li><p class="notification">' + msg + '  \
+		 $("#chat").append('<p class="notification">' + msg + '  \
 		                	<time>' + time + '</time> \
-		                </p></li>');
+		                </p>');
 	};
+
+	var scrolled = false;
+	function updateScroll(){
+	    if(!scrolled){
+	        var element = $("#right");
+	        element.scrollTop = element.scrollHeight;
+	    }
+	}
+
+	$("#right").on('scroll', function(){
+	    scrolled=true;
+	});
 
 });
 

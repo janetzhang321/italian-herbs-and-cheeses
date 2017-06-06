@@ -56,7 +56,6 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
   text-align:left;  
   text-shadow:none;
   overflow:auto;
-  
 }
 
 .blacktext{
@@ -196,6 +195,7 @@ html, body {
     -moz-user-select: none;
     -ms-user-select: none;
 }
+
 .chat .notification {
     position: relative;
     display: inherit;
@@ -409,6 +409,7 @@ emoji.shit{background-image: url(https://i.imgur.com/H5Jba8r.png);}
 
 /* T Y P E */
 .typezone{
+    position:absolute;
     bottom: 0px;
     left: 0px;
     right: 0px;
