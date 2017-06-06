@@ -1,9 +1,11 @@
 $(document).ready(function(){
-	var room = 0;
-
+	var room;
+	var socket;
 	$('.chatRoom').click(function(event){
-		var socket = io.connect( 'http://' + document.domain + ':' + location.port )
-		socket.emit( 'leave', {'room':room});
+
+		socket = io.reconnect( 'http://' + document.domain + ':' + location.port );
+		
+		
 
 		event.preventDefault();
 		$('#chat').empty();
@@ -37,6 +39,8 @@ $(document).ready(function(){
 		  $( 'input.message' ).val( '' ).focus();
 		});
 	});
+
+
 	var addSelfMsg = function(msg,time) {
 		  $("#chat").append('<li class="self"> \
 		                 			 <div class="msg"> \
