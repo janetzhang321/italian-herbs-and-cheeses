@@ -90,16 +90,18 @@ def addFriend():
     if not (users.addFriendRequest(user,newFriend)): error_msg = "That username does not exist"
     return redirect(url_for("home", status = error_msg))
 
-@app.route("/acceptFriendRequest/",methods=["POST"])
-def acceptFriendRequest():
+@app.route("/acceptFriendRequest/<friend>",methods=["GET","POST"])
+def acceptFriendRequest(friend):
     if 'Username' not in session:
         return redirect(url_for("log"))
-    print request.form["param"]
-    users.acceptFriendRequest(request.form["param"],session["Username"])
-    return json.dumps({"success":True})
+    user = session['Username']
+    users.acceptFriendRequest(friend,user)
+    return redirect(url_for("myProfile"))
     
 @app.route("/deleteFriend/<friend>",methods=['GET','POST'])
 def deleteFriend(friend):
+    if 'Username' not in session:
+        return redirect(url_for("log"))
     user = session['Username']
     users.deleteFriend(user,friend)
     return redirect(url_for("myProfile"))
