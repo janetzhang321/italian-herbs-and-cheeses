@@ -10,7 +10,69 @@
     <link rel="stylesheet" type="text/css" src="/static/css/font-awesome.min.css"/>
     <script src="/static/js/modernizr.custom.js"></script>
 	<link rel="stylesheet" type="text/css" src="/static/css/normalize.css"/>
+  <link href="/static/css/cover.css" rel="stylesheet">
+  <link href="/static/css/home.css" rel="stylesheet">
 	<style>
+		select{
+		   -webkit-appearance: button;
+		   -webkit-border-radius: 2px;
+		   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+		   -webkit-padding-end: 20px;
+		   -webkit-padding-start: 2px;
+		   -webkit-user-select: none;
+		   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+		   background-position: 97% center;
+		   background-repeat: no-repeat;
+		   border: 1px solid #AAA;
+		   color: #555;
+		   font-size: inherit;
+		   margin: 20px;
+		   overflow: hidden;
+		   padding: 5px 10px;
+		   text-overflow: ellipsis;
+		   white-space: nowrap;
+		   width: 300px;
+		}
+		.myButton {
+			-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+			-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+			box-shadow:inset 0px 1px 0px 0px #ffffff;
+			background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+			background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+			background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+			background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+			background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+			background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+			background-color:#ffffff;
+			-moz-border-radius:6px;
+			-webkit-border-radius:6px;
+			border-radius:6px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:6px 24px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+		}
+		.myButton:hover {
+			background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+			background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+			background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+			background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+			background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+			background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
+			background-color:#f6f6f6;
+		}
+		.myButton:active {
+			position:relative;
+			top:1px;
+		}
 		#vid-box{
 			display: inline-block;
 			text-align:center;
@@ -24,6 +86,21 @@
 <body>
 <div class = "bodyDiv">
 
+
+      <div class="row">
+    
+      <div class="inner">
+        <h3 class="masthead-brand">ooWoo</h3>
+        <nav>
+          <ul class="nav masthead-nav">
+            <li class="active"><a href="#home">Home</a></li>
+            <li><a href="/myprofile/">{{user}}</a></li>
+            <li><a href="/logout/">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+    
+  </div>
 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 <!-- My Phone Number & Dial Areas -->
 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
@@ -45,27 +122,28 @@
 -->
     
     
-    <form name="callForm" id="call" action="#" onsubmit="return errWrap(makeCall,this);">
+    <form name="callForm" id="call"  action="#" onsubmit="return errWrap(makeCall,this);">
     	Enter User To Call!
         <span class="input input--nao">
         	<select name="number" id="call">
 				{{options|safe}}                                         
 			</select>        
 		</span>
-        <button type="submit" value="Call" style="margin-top: 40px; margin-left:-10px">Call</button>
+        <button type="submit" class="myButton" value="Call" style="margin-top: 40px; margin-left:-10px">Call</button>
 	</form>
 	
-	<div id="inCall" class="ptext">
-		<button id="end" onclick="end()" >End</button> 
-        <button id="mute" onclick="mute()">Mute</button> 
-        <button id="pause" onclick="pause()">Pause</button>
+	<div id="inCall" >
+		<button id="start" class="myButton" onclick="login()">Start</button>
+		<button id="end" class="myButton" onclick="end()" >End</button> 
+        <button id="mute" class="myButton" onclick="mute()">Mute</button> 
+        <button id="pause" class="myButton" onclick="pause()">Pause</button>
 	</div>
     
-	<div id="logs" class="ptext"></div>
+	<div id="logs" ></div>
 
-<p class="ptext"><b>To Use:</b></p>
-<p class="ptext">Type a username and click Log in. If input turns green you are ready to receive/place a call.</p>
-<p class="ptext">In a separate browser window, log in with a different username, and place a call to the first.</p>
+<p ><b>To Use:</b></p>
+<p >Type a username and click Log in. If input turns green you are ready to receive/place a call.</p>
+<p >In a separate browser window, log in with a different username, and place a call to the first.</p>
 
 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 <!-- WebRTC Peer Connections -->
@@ -81,7 +159,6 @@ var video_out = document.getElementById("vid-box");
 var vid_thumb = document.getElementById("vid-thumb");
 var vidCount  = 0;
 var username = '{{user}}';
-alert(username );
     
 function login() {
 	var phone = window.phone = PHONE({
@@ -153,7 +230,6 @@ function errWrap(fxn, form){
 	}
 }
 
-login()
 </script>
 
 <script>
