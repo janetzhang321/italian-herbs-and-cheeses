@@ -3,19 +3,26 @@ $(document).ready(function(){
 	var socket;
 	var connected = false;
 	$('.chatRoom').click(function(event){
+		
+		$('#chat').empty();
+
 		if (connected == false){
 			socket = io.connect( 'http://' + document.domain + ':' + location.port )				
 			connected = true;
+			
 		}else{
 			socket.emit('leave',{'room':room})
-			socket = io.reconnect()
+			socket.disconnect()
+			socket.socket.connect()	
 		}
-
 		event.preventDefault();
-		$('#chat').empty();
+
+
 		
 		room = $(".realChat",this).attr('id');
 		
+
+
 		socket.on( 'connect', function() {
 			socket.emit( 'joined', {'room':room});
 		});		
@@ -25,8 +32,6 @@ $(document).ready(function(){
 		});
 		
 		socket.on('send', function(data) {
-			console.log(data.username)
-			console.log(username)
 			if (data.username !== username) {	
 				addOtherMsg(data.msg,data.time,data.username);
 			}else{
@@ -50,6 +55,16 @@ $(document).ready(function(){
 		  $( '#msgsent' ).val( '' ).focus();
 		});
 
+		$.post('/getinfo/',{'roomId':room},function(data){
+						
+			var roomname = data['roomname'];
+			var users = data['users'];
+			$('#title').text(roomname);
+			$('#members').text(users);
+		
+		});
+		
+		
 	});
 
 

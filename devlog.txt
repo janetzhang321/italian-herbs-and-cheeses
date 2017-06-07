@@ -39,7 +39,7 @@ michaelW 5/24/2017
 	Continued working on databases
 	Started working on friend functions
 
-harryL 5/24/2017 @ 1:33 AM
+harryL 5/24/2017
 	Modified login page styling to work for all browser sizes
 	Started work on homepage styling
 

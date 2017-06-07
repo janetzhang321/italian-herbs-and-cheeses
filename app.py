@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, session, redirect
+from flask import Flask, render_template, request, url_for, session, redirect, jsonify
 from flask_socketio import join_room, leave_room, SocketIO, emit
 from time import gmtime, strftime
 from utils import login, users, chat
@@ -15,6 +15,7 @@ socketio = SocketIO(app)
 
 @socketio.on('joined')
 def handle_connections(data):
+    print "wtffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
     username = session['Username']
     room = data['room']
     join_room(room)
@@ -149,6 +150,14 @@ def room(identifier):
     user = session['Username']
     room = identifier
     return render_template("chatroom.html",user=user,room=room)
+
+@app.route("/getinfo/", methods=['POST'])
+def getinfo():
+    roomId = request.form['roomId']
+    roomname = chat.getRoomName(roomId)
+    users = chat.getUsersIn(roomId)
+    return jsonify(roomname = roomname,users = users)
+
 
 
 if __name__ == "__main__":
