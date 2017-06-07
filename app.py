@@ -103,7 +103,15 @@ def acceptFriendRequest():
     friend = request.form['friend'].strip()
     users.acceptFriendRequest(friend,user)
     return jsonify(myFriendRequests=users.htmlify_FriendRequests(user),myFriends=users.htmlify_Friends(user))
-    
+
+@app.route("/declineFriendRequest/",methods=["POST"])
+def declineFriendRequest():
+    user = request.form['user'].strip()
+    friend = request.form['friend'].strip()
+    users.acceptFriendRequest(friend,user)
+    users.deleteFriend(user,friend)
+    return jsonify(myFriendRequests=users.htmlify_FriendRequests(user))
+
 @app.route("/deleteFriend/",methods=['POST'])
 def deleteFriend():
     user = request.form['user'].strip()
@@ -159,6 +167,12 @@ def getinfo():
     users = chat.getUsersIn(roomId)
     messages = chat.getMessagesFor(roomId)
     return jsonify(roomname = roomname,users = users,messages = messages)
+
+@app.route("/deleteRoom/<id>")
+def deleteRoom(id):
+    chat.deleteRoom(id)
+    return redirect(url_for('home'))
+
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Home</title>
+  <title id="lul">Home</title>
 
   <!-- Bootstrap -->
   <link href="/static/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -70,7 +70,7 @@
                         </div>
                       </div>
                       
-
+                      <div class="row lined">
                       <form action="/createroom/" method="POST">
                             <div class="form-group">
                                 <label for="roomname">Room Name</label>
@@ -90,16 +90,24 @@
                             <button class="btn btn-sm btn-primary" type="submit" name="action" value="createroom">Create Room</button>  
                        
                       </form>
+                      </div>
+
 
                       {% for chatRoom in chatRooms %}
-                      <form>
+                      
                         <a class="chatRoom" href="">
                         <div class="row row-eq-height lined"> 
                           <div class="col-sm-12 realChat" id="{{chatRoom['roomId']}}">{{chatRoom['roomName']}}</div>
-                          <div class="hidden"></div>
+                          <object>
+                          <a href="/deleteRoom/{{chatRoom['roomId']}}"> 
+                            <button class="btn btn-danger btn-xs deleteroom">
+                              <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                          </a>
+                          </object>
                         </div>
                         </a>
-                      </form>
+                      
                       {% endfor %}
 
 

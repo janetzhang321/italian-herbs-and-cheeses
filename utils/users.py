@@ -138,7 +138,7 @@ def htmlify_FriendRequests(user):
     for entry in friendRequestList:
         friendRequest_str+="<div class='friendRequest_button'>"
         friendRequest_str+='''%s <button class="btn btn-success btn-xs noboi"><span class=" glyphicon glyphicon-ok"></span></button>'''%(entry) #href= ajax to call js function accept fr
-        friendRequest_str+=''' <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button>'''
+        friendRequest_str+=''' <button class="btn btn-danger btn-xs wtfboi"><span class="glyphicon glyphicon-remove"></span></button>'''
         friendRequest_str+="</div><br>"
     return friendRequest_str
     

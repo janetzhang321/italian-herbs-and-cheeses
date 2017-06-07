@@ -17,4 +17,12 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.wtfboi').click(function(e){
+		var friend = $(this).parent().text();
+		$.post('/declineFriendRequest/',{'user':username,'friend':friend},function(data){
+				$('#requests').html(data['myFriendRequests']);
+		});
+		
+	});
+
 });

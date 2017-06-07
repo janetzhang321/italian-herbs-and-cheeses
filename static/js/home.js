@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var socket;
 	var connected = false;
 	$('.chatRoom').click(function(event){
-		
+		console.log("hi")
 		$('#chat').empty();
 
 		if (connected == false){
@@ -92,8 +92,12 @@ $(document).ready(function(){
 		
 	});
 
-	$('.chatRoom').click(function(event){
-		var x = 1
+	$('.deleteroom').click(function(e){
+		roomId=$(this).parent().prev().attr('id');
+		console.log(roomId)
+		window.location='http://' + document.domain + ':' + location.port + '/deleteRoom' + roomId;
+                          	
+	   	e.stopPropagation();
 	});
 	var addSelfMsg = function(msg,time) {
 		  $("#chat").append('<li class="self"> \
