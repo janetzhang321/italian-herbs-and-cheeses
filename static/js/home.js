@@ -25,10 +25,12 @@ $(document).ready(function(){
 
 		socket.on( 'connect', function() {
 			socket.emit( 'joined', {'room':room});
+
 		});		
 
 		socket.on( 'status', function(data){
 			addNotification(data.msg,data.time);
+			$('#chat').scrollTop($('#chat')[0].scrollHeight);
 		});
 		
 		socket.on('send', function(data) {
@@ -37,6 +39,7 @@ $(document).ready(function(){
 			}else{
 				addSelfMsg(data.msg,data.time);
 			}
+			$('#chat').scrollTop($('#chat')[0].scrollHeight);
 	    	
 	  	});
 
@@ -59,15 +62,39 @@ $(document).ready(function(){
 						
 			var roomname = data['roomname'];
 			var users = data['users'];
+			var messages = data['messages'];
+			var i,x;
+			for (i = 0; i < messages.length; i++){
+				x = messages[i];
+				user = x['username']
+				msg = x['msg']
+				time = x['time']
+				if (user == username) {
+					addSelfMsg(msg,time)
+				}else{
+					addOtherMsg(msg,time,user)
+				}
+
+			}
+
 			$('#title').text(roomname);
 			$('#members').text(users);
-		
+			
+			$("#title").fadeIn(500);
+			$("#members").fadeIn(500);
+
+			$("#chat").fadeIn(500);
+			
+			$("#msgform").fadeIn(500);
+			$('#chat').scrollTop($('#chat')[0].scrollHeight);
 		});
-		
+
 		
 	});
 
-
+	$('.chatRoom').click(function(event){
+		var x = 1
+	});
 	var addSelfMsg = function(msg,time) {
 		  $("#chat").append('<li class="self"> \
 		                 			 <div class="msg"> \
@@ -101,9 +128,6 @@ $(document).ready(function(){
 	    }
 	}
 
-	$("#right").on('scroll', function(){
-	    scrolled=true;
-	});
 
 });
 

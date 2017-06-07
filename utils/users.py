@@ -128,7 +128,7 @@ def htmlify_Friends(user):
     for entry in friendList:
         if entry != "":
             friendList_str+="<div class='friendList_button'>"
-            friendList_str+="%s <a href=\'/deleteFriend/%s\'>Remove</a>"%(entry,entry) #href= ajax to call js function accept fr
+            friendList_str+='''%s <button class="btn btn-danger btn-xs yeboi"><span class="glyphicon glyphicon-remove"></span></button>'''%(entry) #href= ajax to call js function accept fr
             friendList_str+="</div><br>"
     return friendList_str
 
@@ -137,7 +137,8 @@ def htmlify_FriendRequests(user):
     friendRequest_str = ""
     for entry in friendRequestList:
         friendRequest_str+="<div class='friendRequest_button'>"
-        friendRequest_str+="<a href=\'/acceptFriendRequest/%s\'>%s</a>"%(entry,entry) #href= ajax to call js function accept fr
+        friendRequest_str+='''%s <button class="btn btn-success btn-xs noboi"><span class=" glyphicon glyphicon-ok"></span></button>'''%(entry) #href= ajax to call js function accept fr
+        friendRequest_str+=''' <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button>'''
         friendRequest_str+="</div><br>"
     return friendRequest_str
     

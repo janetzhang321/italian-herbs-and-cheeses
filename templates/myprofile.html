@@ -17,8 +17,14 @@
   <link href="/static/css/cover.css" rel="stylesheet">
   <link href="/static/css/home.css" rel="stylesheet">
   <!-- JS -->
-  <script src="/static/js/users.js"></script>
 
+  <script src="/static/js/users.js"></script>
+  <script src="/static/js/myprofile.js"></script>
+  <script>
+    var username = "{{session['Username']}}"
+    
+  </script>
+  
 </head>
 
 
@@ -42,15 +48,15 @@
                 </nav>
               </div>
             
+          </div>  
+          My Friends: <br>
+          <div id="friends">
+            {{myFriends|safe}}
           </div>
 
-          <div>
-            My Friends: <br>{{myFriends|safe}}
-          </div>
-
-
-          <div>
-            Friend Requests: <br> {{friendRequests|safe}}
+          Friend Requests: <br>
+          <div id="requests">
+             {{friendRequests|safe}}
           </div>
 
         </div>

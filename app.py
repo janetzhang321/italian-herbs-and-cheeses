@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, session, redirect, jsonify
 from flask_socketio import join_room, leave_room, SocketIO, emit
-from time import gmtime, strftime
+from time import localtime, strftime
 from utils import login, users, chat
 import json
 
@@ -19,7 +19,7 @@ def handle_connections(data):
     username = session['Username']
     room = data['room']
     join_room(room)
-    time = strftime("%H:%M", gmtime())
+    time = strftime("%H:%M", localtime())
     socketio.emit('status', {'msg': username + ' has entered the room.', 'time':time,'username':username }, room=room);
 
 @socketio.on('message')
@@ -27,7 +27,7 @@ def handle_messages(data):
     username = session['Username']
     room = data['room']
     msg = data['msg']
-    time = strftime("%m-%d %H:%M", gmtime())
+    time = strftime("%m-%d %H:%M", localtime())
     chat.addMessage(room,username,msg,time)
     socketio.emit('send',  {'msg': msg, 'time':time,'username':username },room=room);
 
@@ -37,7 +37,7 @@ def handle_leaving(data):
     username = session['Username']
     room = data['room']
     leave_room(room)
-    time = strftime("%H:%M", gmtime())
+    time = strftime("%H:%M", localtime())
     socketio.emit('status', {'msg': username + ' has left the room.', 'time':time}, room=room)
     
 
@@ -97,21 +97,22 @@ def addFriend():
     if not (users.addFriendRequest(user,newFriend)): error_msg = "That username does not exist"
     return redirect(url_for("home", status = error_msg))
 
-@app.route("/acceptFriendRequest/<friend>",methods=["GET","POST"])
-def acceptFriendRequest(friend):
-    if 'Username' not in session:
-        return redirect(url_for("log"))
-    user = session['Username']
+@app.route("/acceptFriendRequest/",methods=["POST"])
+def acceptFriendRequest():
+    user = request.form['user'].strip()
+    friend = request.form['friend'].strip()
     users.acceptFriendRequest(friend,user)
-    return redirect(url_for("myProfile"))
+    return jsonify(myFriendRequests=users.htmlify_FriendRequests(user),myFriends=users.htmlify_Friends(user))
     
-@app.route("/deleteFriend/<friend>",methods=['GET','POST'])
-def deleteFriend(friend):
-    if 'Username' not in session:
-        return redirect(url_for("log"))
-    user = session['Username']
+@app.route("/deleteFriend/",methods=['POST'])
+def deleteFriend():
+    user = request.form['user'].strip()
+    friend = request.form['friend'].strip()
+    print user,friend
+    
     users.deleteFriend(user,friend)
-    return redirect(url_for("myProfile"))
+    print users.getFriendList(user)
+    return jsonify(myFriends=users.htmlify_Friends(user))
 
 @app.route("/myprofile/")
 def myProfile():
@@ -153,11 +154,11 @@ def room(identifier):
 
 @app.route("/getinfo/", methods=['POST'])
 def getinfo():
-    roomId = request.form['roomId']
+    roomId = request.form['roomId'] 
     roomname = chat.getRoomName(roomId)
     users = chat.getUsersIn(roomId)
-    return jsonify(roomname = roomname,users = users)
-
+    messages = chat.getMessagesFor(roomId)
+    return jsonify(roomname = roomname,users = users,messages = messages)
 
 
 if __name__ == "__main__":

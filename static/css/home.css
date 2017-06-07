@@ -2,7 +2,7 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
   overflow:hidden;
   height: 100vh;
   margin: 0;
-  fcolor:white;
+  color:white;
 }
 
 #body{
@@ -42,6 +42,7 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
   overflow:auto;
   color:black;
   text-shadow:none;
+  border-radius: 10px;
 }
 
 .row-eq-height {
@@ -52,10 +53,12 @@ body, html, .site-wrapper,.site-wrapper-inner,.container-fluid {
 }
 
 #right {
+  position:relative;
   color:black;
   text-align:left;  
   text-shadow:none;
   overflow:auto;
+  
 }
 
 .blacktext{
@@ -92,8 +95,10 @@ html, body {
 /* M E N U */
 
 .menu {
+    position:fixed;
     width: 100%;
     height: 50px;
+    opacity:100%;
     background: rgba(27,35,42,0.9);
     z-index: 100;
     -webkit-touch-callout: none;
@@ -528,4 +533,17 @@ emoji.shit{background-image: url(https://i.imgur.com/H5Jba8r.png);}
     .chat .notification time {
         right: 10px;
     }
+}
+
+#msgform{
+    display:none;
+    color:white;
+    width:100%;
+}
+#msgsent{
+    width:100%;
+    background-color:#21272d;
+}
+#sendmsg, #title, #members, #chat{
+    display:none;
 }
