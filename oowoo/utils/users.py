@@ -1,5 +1,5 @@
 import sqlite3
-
+import os
 DIR = os.path.dirname(__file__)
 DIR += '/'
 db1 = DIR + "data/database.db"
