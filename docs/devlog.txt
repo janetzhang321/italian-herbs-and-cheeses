@@ -1,0 +1,110 @@
+all 5/11/2017 
+	Created design document
+
+michaelW 5/15/2017
+	Initiated Flask
+
+michaelW 5/16/2017
+	Initiated databases
+
+lindseyM, JanetZ 5/17/2017
+	Created basic templates
+
+michaelW 5/21/2017
+	Added pubnub
+	Continued work on databases
+
+harryL, janetZ 5/21/2017
+	Worked on login and logout
+
+lindseyM 5/21/2017
+	Continued working on templates
+
+michaelW 5/22/2017
+	Worked on paths
+
+harryL, janetZ 5/22/2017
+	Worked on video
+
+michaelW 5/23/2017
+	Worked on databases
+
+harryL, janetZ 5/23/2017
+	Worked on video
+
+lindseyM 5/23/2017
+	Continued working on Flask templates and js
+
+michaelW 5/24/2017
+	Continued working on databases
+	Started working on friend functions
+
+harryL 5/24/2017
+	Modified login page styling to work for all browser sizes
+	Started work on homepage styling
+
+janetZ, lindseyM 5/24/2017
+	CSS, cleaned up repo, fixed login and home styling 
+
+harryL, janetZ 5/25/2017
+	Worked on the chat css
+
+michaelW 5/27/2017
+	Add friend function
+
+michaelW 5/28/2017
+	Profile page
+
+harryL, janetZ 5/28/2017
+	Worked on making the chat work
+
+lindseyM 5/28/2017
+	Added CSS, fixed bad styling
+
+all 5/29/2017
+	Collectively worked on chat; Making the chat work
+
+michaelW 5/30/2017
+	Worked on profile
+	Worked on db functions
+
+harryL, janetZ 5/31/2017
+	CSS and design
+
+janetZ 6/2/2017
+	Worked on chat functions
+
+harryL, janetZ 6/3/2017
+	Finished chatroom dbs
+
+michaelW 6/3/2017
+	fixed friend list
+	Accept friend request function
+
+michaelW 6/4/2017
+	worked on caller form for vid
+
+lindseyM 6/3/2017
+	Worked on CSS
+	Worked on search bar for friends
+
+michaelW 6/5/2017
+	styling for vid
+	changed accepting friend request
+	remove friends feature
+
+lindseyM 6/5/2017
+	Worked on CSS for home and video pages
+
+janetZ 6/5/2017
+	Added create chatroom function
+
+harryL 6/5/2017
+	Fixed chatroom 
+	styling for chatroom
+	chat bubbles
+	socket stuff
+
+
+	
+

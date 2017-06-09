@@ -4,8 +4,9 @@ from time import localtime, strftime
 from utils import login, users, chat
 import json
 
-
-db = "data/database.db"
+DIR = os.path.dirname(__file__)
+DIR += '/'
+db = DIR + "data/database.db"
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'shhhh'
@@ -15,7 +16,6 @@ socketio = SocketIO(app)
 
 @socketio.on('joined')
 def handle_connections(data):
-    print "wtffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
     username = session['Username']
     room = data['room']
     join_room(room)
@@ -33,7 +33,6 @@ def handle_messages(data):
 
 @socketio.on('leave')
 def handle_leaving(data):
-    print "leaving room"
     username = session['Username']
     room = data['room']
     leave_room(room)
@@ -83,7 +82,6 @@ def authenticate():
 
     if action == "Login":
         text = login.login(user,password)#error message
-        print text
         if text == "":#if no error message, succesful go back home
             session["Username"] = user
             return redirect(url_for('home'))#,success="You have logged in"))
@@ -116,10 +114,7 @@ def declineFriendRequest():
 def deleteFriend():
     user = request.form['user'].strip()
     friend = request.form['friend'].strip()
-    print user,friend
-    
     users.deleteFriend(user,friend)
-    print users.getFriendList(user)
     return jsonify(myFriends=users.htmlify_Friends(user))
 
 @app.route("/myprofile/")
@@ -137,7 +132,6 @@ def video():
         return redirect(url_for("log"))
     user = session["Username"]
     options = chat.htmlify_dropdownFriends(user)
-    print options
     return render_template("minivid2.html",user=user,options=options)
 
 @app.route("/logout/")
@@ -176,7 +170,7 @@ def deleteRoom(id):
 
 
 if __name__ == "__main__":
-    app.debug = True
+    app.debug = False
     socketio.run(app)
 
 

@@ -1,6 +1,8 @@
 import hashlib,sqlite3
 
-f="database.db"
+DIR = os.path.dirname(__file__)
+DIR += '/'
+f= DIR + "database.db"
 
 db = sqlite3.connect(f) #open if f exists, otherwise create
 c = db.cursor()    #facilitate db ops

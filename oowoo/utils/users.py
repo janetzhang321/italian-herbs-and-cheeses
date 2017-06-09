@@ -1,6 +1,8 @@
 import sqlite3
 
-db1 = "data/database.db"
+DIR = os.path.dirname(__file__)
+DIR += '/'
+db1 = DIR + "data/database.db"
 
 def initUserDB(user):
     db=sqlite3.connect(db1)
