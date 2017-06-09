@@ -3,6 +3,7 @@ from flask_socketio import join_room, leave_room, SocketIO, emit
 from time import localtime, strftime
 from utils import login, users, chat
 import json
+import os
 
 DIR = os.path.dirname(__file__)
 DIR += '/'
