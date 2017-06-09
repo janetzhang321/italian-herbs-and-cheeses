@@ -4,8 +4,7 @@ from hashlib import sha1
 from sqlite3 import connect
 import os
 
-DIR = os.path.dirname(__file__)
-DIR += '/'
+DIR = os.path.dirname(__file__)[:-5]
 f = DIR + "data/database.db"
 
 def login(user, password):

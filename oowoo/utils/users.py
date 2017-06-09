@@ -1,7 +1,7 @@
 import sqlite3
 import os
-DIR = os.path.dirname(__file__)
-DIR += '/'
+
+DIR = os.path.dirname(__file__)[:-5]
 db1 = DIR + "data/database.db"
 
 def initUserDB(user):
