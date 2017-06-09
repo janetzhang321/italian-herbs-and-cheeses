@@ -2,6 +2,7 @@
 
 from hashlib import sha1
 from sqlite3 import connect
+import os
 
 DIR = os.path.dirname(__file__)
 DIR += '/'
