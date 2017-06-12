@@ -19,3 +19,6 @@ Imports:
 Use pip to install flask and requests and socketio
 <br>
 pip install flask-socketio
+
+## Notes
+Video chat doesn't seem to work on chrome because the site isn't secure. Use firefox instead.
